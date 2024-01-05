@@ -25,7 +25,11 @@ export async function POST(request) {
         }
     })
     return NextResponse.json({ userName: newUser.name, email: newUser.email }, { status: 201 })
+}
 
+export async function GET(request) {
 
+    const users = await prisma.user.findMany();
 
+    return NextResponse.json(users)
 }
