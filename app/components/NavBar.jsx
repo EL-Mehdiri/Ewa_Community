@@ -10,12 +10,15 @@ const NavBar = () => {
   return (
     <header className="flex gap-4 p-4  bg-gradient-to-b from-white to-gray-200 shadow">
       <p className="text-sky-500">Next App</p>
+      <p className="text-gray-700 ">
+        <Link href="/PfeIdeas">PfeIdeas</Link>
+      </p>
       <div className="flex gap-4 ">
         {status === "loading" && <div className="text-black">Lodding...</div>}
         {status === "authenticated" && (
           <>
             <p className="text-sky-500">{session?.user?.name}</p>
-            {/* <p className="text-sky-500">{session?.user?.email}</p> */}
+
             <Image
               width={50}
               height={50}
