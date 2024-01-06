@@ -24,7 +24,9 @@ export async function POST(request) {
             hashedPassword,
         }
     })
+
     return NextResponse.json({ userName: newUser.name, email: newUser.email }, { status: 201 })
+
 }
 
 export async function GET(request) {
