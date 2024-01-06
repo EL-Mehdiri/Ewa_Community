@@ -16,13 +16,13 @@ const NavBar = () => {
           <>
             <p className="text-sky-500">{session?.user?.name}</p>
             {/* <p className="text-sky-500">{session?.user?.email}</p> */}
-            {/* <Image
+            <Image
               width={50}
               height={50}
               src={session?.user?.image}
               className="rounded-full"
               alt="logo"
-            /> */}
+            />
             <Link href="/api/auth/signout" className="text-red-600 ">
               Sign Out
             </Link>

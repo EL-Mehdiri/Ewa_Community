@@ -7,6 +7,9 @@ import bcrypt from "bcrypt"
 
 const prisma = new PrismaClient()
 export const authOptions = {
+    secret: process.env.NEXTAUTH_SECRET,
+
+
     // Configure one or more authentication providers
     adapter: PrismaAdapter(prisma),
     providers: [

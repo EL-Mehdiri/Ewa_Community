@@ -3,27 +3,30 @@ import React from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
-const SignInButton = () => {
+
+const NavBar = () => {
   const { status, data: session } = useSession();
-  if (status === "loading") return null;
+
   return (
-    <>
-      <div className="flex gap-4 ml-auto">
-        <p className="text-sky-500">Next App</p>
-        {status === "loading" && <div></div>}
+    <header className="flex gap-4 p-4  bg-gradient-to-b from-white to-gray-200 shadow">
+      <p className="text-sky-500">Next App</p>
+      <div className="flex gap-4 ">
+        {status === "loading" && <div className="text-black">Lodding...</div>}
         {status === "authenticated" && (
-          <div>
+          <>
             <p className="text-sky-500">{session?.user?.name}</p>
-            <p className="text-sky-500">{session?.user?.email}</p>
-            {/* <Image
+            {/* <p className="text-sky-500">{session?.user?.email}</p> */}
+            <Image
               width={50}
               height={50}
               src={session?.user?.image}
               className="rounded-full"
               alt="logo"
-            /> */}
-            <button className="text-red-600">Sign Out</button>
-          </div>
+            />
+            <Link href="/api/auth/signout" className="text-red-600 ">
+              Sign Out
+            </Link>
+          </>
         )}
       </div>
       {status === "unauthenticated" && (
@@ -31,10 +34,8 @@ const SignInButton = () => {
           Sign In
         </Link>
       )}
-      ;
-    </>
+    </header>
   );
-  // }
 };
 
-export default SignInButton;
+export default NavBar;
