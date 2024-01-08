@@ -9,7 +9,7 @@ export async function PATCH(request, { params }) {
     if (!validationSchema.success) return NextResponse.json(validationSchema.error.format())
     // Get the idea to be edited and check it exists
     const idea = await prisma.pfeideas.findUnique({ where: { id: params.id } })
-    if (!idea) return NextResponse.json({ error: "Idea id not Exist !!! " }, { status: 404 })
+    if (!idea) return NextResponse.json({ error: "Idea is not Exist !!! " }, { status: 404 })
     const updateIdea = await prisma.pfeideas.update({
         where: { id: idea.id },
         data: {
@@ -18,4 +18,16 @@ export async function PATCH(request, { params }) {
         }
     })
     return NextResponse.json(updateIdea)
+}
+
+
+
+export async function DELETE(request, { params }) {
+
+    const idea = await prisma.pfeideas.findUnique({ where: { id: params.id } })
+    if (!idea) return NextResponse.json({ error: "Idea is not Exist !!! " }, { status: 404 })
+    await prisma.pfeideas.delete({
+        where: { id: idea.id },
+    })
+    return NextResponse.json({})
 }

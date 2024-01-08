@@ -2,6 +2,8 @@ import prisma from "@/prisma/client";
 import React from "react";
 import Markdown from "react-markdown";
 import Link from "next/link";
+import DeleteButton from "@/app/components/DeleteButton";
+import PopupModel from "@/app/components/PopupModel";
 
 const page = async ({ params }) => {
   const idea = await prisma.pfeideas.findUnique({ where: { id: params.id } });
@@ -13,9 +15,13 @@ const page = async ({ params }) => {
       <h3>{idea.title}</h3>
       <Markdown>{idea.content}</Markdown>
       <p>{idea.createdAt.toDateString()}</p>
-      <button>
-        <Link href={`/PfeIdeas/${params.id}/edite`}>Edite Idea</Link>
-      </button>
+      <div className="flex gap-2">
+        <button>
+          <Link href={`/PfeIdeas/${params.id}/edite`}>Edite Idea</Link>
+        </button>
+        {/* <DeleteButton id={params.id} /> */}
+        <PopupModel url={`/api/pfeIdeas/${params.id}`} />
+      </div>
     </div>
   );
 };
