@@ -9,9 +9,7 @@ const LoadingIdeas = () => {
     <div className="">
       <SkeletonTheme baseColor="#202020" highlightColor="#222666">
         <button>
-          <Link href="/PfeIdeas/newIdea">
-            <Skeleton />
-          </Link>
+          <Link href="/PfeIdeas/newIdea">New Pfe Idea</Link>
         </button>
         <div className="grid grid-cols-3 gap-10 pt-5">
           {ideas.map((idea) => (
