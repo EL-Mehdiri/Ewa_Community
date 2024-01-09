@@ -1,9 +1,7 @@
-import prisma from "@/prisma/client";
-import React from "react";
-import Markdown from "react-markdown";
-import Link from "next/link";
-import DeleteButton from "@/app/components/DeleteButton";
 import PopupModel from "@/app/components/PopupModel";
+import prisma from "@/prisma/client";
+import Link from "next/link";
+import Markdown from "react-markdown";
 
 const page = async ({ params }) => {
   const idea = await prisma.pfeideas.findUnique({ where: { id: params.id } });

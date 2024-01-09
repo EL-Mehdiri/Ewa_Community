@@ -12,6 +12,17 @@ const PopupModel = ({ url }) => {
     };
     init();
   }, []);
+  const onDelete = async () => {
+    try {
+      await axios.delete(url);
+
+      router.push("/PfeIdeas");
+      router.refresh();
+    } catch (error) {
+      console.log("Error deleting idea", error);
+    }
+  };
+
   return (
     <div>
       <button
@@ -93,16 +104,7 @@ const PopupModel = ({ url }) => {
                 data-te-ripple-init
                 data-te-modal-dismiss
                 data-te-ripple-color="light"
-                onClick={async () => {
-                  try {
-                    await axios.delete(url);
-
-                    router.push("/PfeIdeas");
-                    router.refresh();
-                  } catch (error) {
-                    console.log("Error deleting idea", error);
-                  }
-                }}
+                onClick={onDelete}
               >
                 Delete Idea
               </button>

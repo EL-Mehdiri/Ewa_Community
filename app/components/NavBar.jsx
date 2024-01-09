@@ -3,18 +3,25 @@ import React from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
+import Spinner from "./Spinner";
 
 const NavBar = () => {
   const { status, data: session } = useSession();
 
   return (
-    <header className="flex gap-4 p-4  bg-gradient-to-b from-white to-gray-200 shadow">
-      <p className="text-sky-500">Next App</p>
+    <header className="flex gap-4 p-4  items-center bg-gradient-to-b from-white to-gray-200 shadow">
+      <Link href="/" className="text-sky-500">
+        Next App
+      </Link>
       <p className="text-gray-700 ">
         <Link href="/PfeIdeas">PfeIdeas</Link>
       </p>
       <div className="flex gap-4 ">
-        {status === "loading" && <div className="text-black">Lodding...</div>}
+        {status === "loading" && (
+          <div className="text-black">
+            <Spinner />
+          </div>
+        )}
         {status === "authenticated" && (
           <>
             <p className="text-sky-500">{session?.user?.name}</p>

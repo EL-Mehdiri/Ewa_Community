@@ -14,10 +14,10 @@ const page = async () => {
         {ideas.map((idea) => (
           <Link
             href={`/PfeIdeas/${idea.id}`}
-            className="max-w-xl p-5 bg-gray-900 rounded-lg m-1 space-y-5"
+            className="max-w-xl p-5 bg-white  shadow-5 rounded-lg m-1 space-y-5"
             key={idea.id}
           >
-            <h2 className="text-blue-400">{idea.title}</h2>
+            <h2 className="">{idea.title}</h2>
             <Markdown>{idea.content}</Markdown>
           </Link>
         ))}
