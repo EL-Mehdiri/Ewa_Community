@@ -2,6 +2,8 @@ import prisma from "@/prisma/client";
 import { NextResponse } from "next/server"
 import { z } from "zod"
 import bcrypt from "bcrypt";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/authOptions";
 
 const shema = z.object({
     username: z.string().min(2),
@@ -29,9 +31,3 @@ export async function POST(request) {
 
 }
 
-export async function GET(request) {
-
-    const users = await prisma.user.findMany();
-
-    return NextResponse.json(users)
-}

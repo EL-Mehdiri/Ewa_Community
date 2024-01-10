@@ -20,6 +20,7 @@ const IdaeForm = ({ idea }) => {
   } = useForm({
     resolver: zodResolver(IdeaSchema),
   });
+
   const router = useRouter();
   const [error, setError] = useState("");
   const [isSubmiting, setIsSubmiting] = useState(false);

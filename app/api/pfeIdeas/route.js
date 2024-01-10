@@ -26,9 +26,19 @@ export async function POST(request) {
 }
 
 
+// export async function GET(request) {
+
+//     const ideas = await prisma.pfeideas.findMany();
+
+//     return NextResponse.json(ideas)
+// }
+
 export async function GET(request) {
-
-    const ideas = await prisma.pfeideas.findMany();
-
-    return NextResponse.json(ideas)
+    const session = await getServerSession(authOptions)
+    if (session) {
+        const user = await prisma.user.findUnique({ where: { email: session.user.email } })
+        return NextResponse.json(user)
+    }
+    const users = await prisma.user.findMany()
+    return NextResponse.json(users)
 }
