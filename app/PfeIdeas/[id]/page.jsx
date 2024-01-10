@@ -1,11 +1,14 @@
 import PopupModel from "@/app/components/PopupModel";
 import prisma from "@/prisma/client";
 import Link from "next/link";
+import { getServerSession } from "next-auth";
+
 import Markdown from "react-markdown";
+import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 
 const page = async ({ params }) => {
+  const session = await getServerSession(authOptions);
   const idea = await prisma.pfeideas.findUnique({ where: { id: params.id } });
-
   if (!idea) return { notFound: true };
 
   return (
@@ -13,13 +16,14 @@ const page = async ({ params }) => {
       <h3>{idea.title}</h3>
       <Markdown>{idea.content}</Markdown>
       <p>{idea.createdAt.toDateString()}</p>
-      <div className="flex gap-2">
-        <button>
-          <Link href={`/PfeIdeas/${params.id}/edite`}>Edite Idea</Link>
-        </button>
-        {/* <DeleteButton id={params.id} /> */}
-        <PopupModel url={`/api/pfeIdeas/${params.id}`} />
-      </div>
+      {session && (
+        <div className="flex gap-2">
+          <button>
+            <Link href={`/PfeIdeas/${params.id}/edite`}>Edite Idea</Link>
+          </button>
+          <PopupModel url={`/api/pfeIdeas/${params.id}`} />
+        </div>
+      )}
     </div>
   );
 };

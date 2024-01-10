@@ -1,9 +1,11 @@
 "use client";
 import React from "react";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
-import Image from "next/image";
-import Spinner from "./Spinner";
+
+import DropdownMenu from "./DropdownMenu";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const NavBar = () => {
   const { status, data: session } = useSession();
@@ -16,26 +18,16 @@ const NavBar = () => {
       <p className="text-gray-700 ">
         <Link href="/PfeIdeas">PfeIdeas</Link>
       </p>
-      <div className="flex gap-4 ">
-        {status === "loading" && (
-          <div className="text-black">
-            <Spinner />
-          </div>
-        )}
+      <div className="flex ml-auto items-center gap-4 ">
+        {status === "loading" && <Skeleton width="3rem" />}
         {status === "authenticated" && (
           <>
-            <p className="text-sky-500">{session?.user?.name}</p>
-
-            <Image
-              width={50}
-              height={50}
-              src={session?.user?.image}
-              className="rounded-full"
-              alt="logo"
+            <DropdownMenu
+              name={session?.user?.name}
+              email={session?.user?.email}
+              image={session?.user?.image}
             />
-            <Link href="/api/auth/signout" className="text-red-600 ">
-              Sign Out
-            </Link>
+            <p>{session?.user?.name}</p>
           </>
         )}
       </div>

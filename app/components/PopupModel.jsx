@@ -16,7 +16,7 @@ const PopupModel = ({ url }) => {
     try {
       await axios.delete(url);
 
-      router.push("/PfeIdeas");
+      router.push("/");
       router.refresh();
     } catch (error) {
       console.log("Error deleting idea", error);
