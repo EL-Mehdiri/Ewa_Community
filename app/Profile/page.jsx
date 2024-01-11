@@ -2,21 +2,21 @@ import prisma from "@/prisma/client";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import Markdown from "react-markdown";
+
 import { authOptions } from "../api/auth/[...nextauth]/authOptions";
 
-const page = async () => {
+const ProfilePage = async () => {
   const session = await getServerSession(authOptions);
   const user = await prisma.user.findUnique({
     where: { email: session.user.email },
   });
-  // const ideas = await prisma.pfeideas.findMany({ where: { userId: user.id } });
-  const ideas = await prisma.pfeideas.findMany();
+  const ideas = await prisma.pfeideas.findMany({ where: { userId: user.id } });
 
   return (
     <div className="">
-      <button>
+      {/* <button>
         <Link href="/PfeIdeas/newIdea">New Pfe Idea</Link>
-      </button>
+      </button> */}
       <div className="grid grid-cols-3 gap-10 pt-5">
         {ideas.map((idea) => (
           <Link
@@ -33,4 +33,4 @@ const page = async () => {
   );
 };
 
-export default page;
+export default ProfilePage;

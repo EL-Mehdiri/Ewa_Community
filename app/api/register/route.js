@@ -31,3 +31,13 @@ export async function POST(request) {
 
 }
 
+
+export async function GET(request) {
+    const session = await getServerSession(authOptions)
+    if (session) {
+        const user = await prisma.user.findUnique({ where: { email: session.user.email } })
+        return NextResponse.json(user)
+    }
+    const users = await prisma.user.findMany()
+    return NextResponse.json(users)
+}

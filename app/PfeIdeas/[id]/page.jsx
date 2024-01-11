@@ -8,6 +8,9 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 
 const page = async ({ params }) => {
   const session = await getServerSession(authOptions);
+  const user = await prisma.user.findUnique({
+    where: { email: session.user.email },
+  });
   const idea = await prisma.pfeideas.findUnique({ where: { id: params.id } });
   if (!idea) return { notFound: true };
 
@@ -16,7 +19,7 @@ const page = async ({ params }) => {
       <h3>{idea.title}</h3>
       <Markdown>{idea.content}</Markdown>
       <p>{idea.createdAt.toDateString()}</p>
-      {session && (
+      {session && idea.userId === user.id && (
         <div className="flex gap-2">
           <button>
             <Link href={`/PfeIdeas/${params.id}/edite`}>Edite Idea</Link>

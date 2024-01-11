@@ -2,6 +2,9 @@ import React from "react";
 import PfeIdeaForm from "../_components/PfeIdeaForm";
 import dynamic from "next/dynamic";
 import Spinner from "@/app/components/Spinner";
+import prisma from "@/prisma/client";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 const IdeaForm = dynamic(
   () => import("@/app/PfeIdeas/_components/PfeIdeaForm"),
   {
@@ -9,8 +12,12 @@ const IdeaForm = dynamic(
     loading: () => <Spinner />,
   }
 );
-const NewIdea = () => {
-  return <IdeaForm />;
+const NewIdea = async () => {
+  const session = await getServerSession(authOptions);
+  const user = await prisma.user.findUnique({
+    where: { email: session.user.email },
+  });
+  return <IdeaForm userId={user.id} />;
 };
 
 export default NewIdea;
