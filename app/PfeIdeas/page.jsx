@@ -7,10 +7,8 @@ import { authOptions } from "../api/auth/[...nextauth]/authOptions";
 
 const page = async () => {
   const session = await getServerSession(authOptions);
-  // const user = await prisma.user.findUnique({
-  //   where: { email: session?.user?.email },
-  // });
-  const ideas = await prisma.pfeideas.findMany();
+  const ideas = await prisma?.pfeideas?.findMany();
+  const users = await prisma.user?.findMany();
 
   return (
     <div className="">
@@ -21,30 +19,36 @@ const page = async () => {
         {ideas.map((idea) => (
           <div
             key={idea.id}
-            className="max-w-xl p-5 bg-white  shadow-5 rounded-lg m-1 space-y-5"
+            className="max-w-xl p-5 bg-white shadow-5 rounded-lg m-1 space-y-5"
           >
             <Link href={`/PfeIdeas/${idea.id}`}>
               <h2 className="">{idea.title}</h2>
               <Markdown>{idea.content}</Markdown>
             </Link>
-            {/* {idea.userId === user?.id && (
-              <div className="flex items-center gap-4">
-                {user.image ? (
-                  <Image
-                    width={50}
-                    height={50}
-                    src={user.image}
-                    className="rounded-full"
-                    alt="logo"
-                  />
-                ) : (
-                  <div className="w-[50px] h-[50px] rounded-full bg-gray-300 grid place-content-center">
-                    ?
+            {users.map((user) => {
+              // Check if the userId of the idea matches the id of the user
+              if (idea?.userId === user?.id) {
+                return (
+                  <div key={user.id} className="flex items-center gap-4">
+                    {user.image ? (
+                      <Image
+                        width={50}
+                        height={50}
+                        src={user.image}
+                        className="rounded-full"
+                        alt="logo"
+                      />
+                    ) : (
+                      <div className="w-[50px] h-[50px] rounded-full bg-gray-300 grid place-content-center">
+                        ?
+                      </div>
+                    )}
+                    <span>By {user.name}</span>
                   </div>
-                )}
-                <span>By {user.name} </span>
-              </div>
-            )} */}
+                );
+              }
+              return null; // If no match, return null
+            })}
           </div>
         ))}
       </div>
