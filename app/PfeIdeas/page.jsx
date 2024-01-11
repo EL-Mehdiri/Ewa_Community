@@ -7,9 +7,9 @@ import { authOptions } from "../api/auth/[...nextauth]/authOptions";
 
 const page = async () => {
   const session = await getServerSession(authOptions);
-  const user = await prisma.user.findUnique({
-    where: { email: session.user.email },
-  });
+  // const user = await prisma.user.findUnique({
+  //   where: { email: session?.user?.email },
+  // });
   const ideas = await prisma.pfeideas.findMany();
 
   return (
@@ -27,7 +27,7 @@ const page = async () => {
               <h2 className="">{idea.title}</h2>
               <Markdown>{idea.content}</Markdown>
             </Link>
-            {idea.userId === user?.id && (
+            {/* {idea.userId === user?.id && (
               <div className="flex items-center gap-4">
                 {user.image ? (
                   <Image
@@ -44,7 +44,7 @@ const page = async () => {
                 )}
                 <span>By {user.name} </span>
               </div>
-            )}
+            )} */}
           </div>
         ))}
       </div>
