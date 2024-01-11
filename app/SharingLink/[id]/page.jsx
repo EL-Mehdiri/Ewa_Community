@@ -19,9 +19,10 @@ const page = async ({ params }) => {
     return (
       <div className="prose  prose-Slate bg-red-50 p-6 rounded-lg">
         <h3>{link.title}</h3>
+
         <Markdown>{link.content}</Markdown>
         <p>{link.createdAt.toDateString()}</p>
-        {session && link.userId === user.id && (
+        {session && link.userId === user.id && user.role === "ADMIN" && (
           <div className="flex gap-2">
             <button>
               <Link href={`/SharingLink/${params.id}/edite`}>Edite link</Link>

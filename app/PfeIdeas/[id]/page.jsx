@@ -17,14 +17,14 @@ const page = async ({ params }) => {
       where: { email: session?.user?.email },
     });
     return (
-      <div className="prose  prose-Slate bg-red-50 p-6 rounded-lg">
+      <div className="prose prose-Slate bg-red-50 p-6 rounded-lg">
         <h3>{idea.title}</h3>
         <Markdown>{idea.content}</Markdown>
         <p>{idea.createdAt.toDateString()}</p>
         {session && idea.userId === user.id && (
           <div className="flex gap-2">
             <button>
-              <idea href={`/PfeIdeas/${params.id}/edite`}>Edite idea</idea>
+              <Link href={`/PfeIdeas/${params.id}/edit`}>Edit Idea</Link>
             </button>
             <PopupModel url={`/api/PfeIdeas/${params.id}`} />
           </div>
