@@ -1,32 +1,53 @@
 import prisma from "@/prisma/client";
-import { getServerSession } from "next-auth";
 import Link from "next/link";
 import Markdown from "react-markdown";
-import { authOptions } from "../api/auth/[...nextauth]/authOptions";
+import Image from "next/image";
 
 const page = async () => {
-  const session = await getServerSession(authOptions);
-  const user = await prisma.user.findUnique({
-    where: { email: session.user.email },
-  });
-  // const ideas = await prisma.pfeideas.findMany({ where: { userId: user.id } });
-  const ideas = await prisma.pfeideas.findMany();
+  const links = await prisma?.sharingLinks?.findMany();
+
+  const users = await prisma.user?.findMany();
 
   return (
     <div className="">
       <button>
-        <Link href="/PfeIdeas/newIdea">New Pfe Idea</Link>
+        <Link href="/SharingLink/newLink">New Link</Link>
       </button>
-      <div className="grid grid-cols-3 gap-10 pt-5">
-        {ideas.map((idea) => (
-          <Link
-            href={`/PfeIdeas/${idea.id}`}
-            className="max-w-xl p-5 bg-white  shadow-5 rounded-lg m-1 space-y-5"
-            key={idea.id}
+      <div className="grid grid-cols-3  gap-10 pt-5">
+        {links.map((link) => (
+          <div
+            key={link.id}
+            className="max-w-xl p-5 bg-white shadow-5 rounded-lg m-1 space-y-5"
           >
-            <h2 className="">{idea.title}</h2>
-            <Markdown>{idea.content}</Markdown>
-          </Link>
+            <Link href={`/SharingLink/${link.id}`}>
+              <h2 className="">{link.title}</h2>
+              <Markdown>{link.content}</Markdown>
+            </Link>
+            {users.map((user) => {
+              // Check if the userId of the idea matches the id of the user
+              if (link?.userId === user?.id) {
+                return (
+                  <div key={user.id} className="flex items-center gap-4">
+                    {user.image ? (
+                      <Image
+                        width={50}
+                        height={50}
+                        src={user.image}
+                        className="rounded-full"
+                        alt="logo"
+                      />
+                    ) : (
+                      <div className="w-[50px] h-[50px] rounded-full bg-gray-300 grid place-content-center">
+                        ?
+                      </div>
+                    )}
+                    <span>By {user.name}</span>
+                  </div>
+                );
+              }
+              return null;
+            })}
+          </div>
         ))}
       </div>
     </div>

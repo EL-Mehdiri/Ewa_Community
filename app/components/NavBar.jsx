@@ -18,6 +18,9 @@ const NavBar = () => {
       <p className="text-gray-700 ">
         <Link href="/PfeIdeas">PfeIdeas</Link>
       </p>
+      <p className="text-gray-700 ">
+        <Link href="/SharingLink">Sharing Link</Link>
+      </p>
       <div className="flex ml-auto items-center gap-4 ">
         {status === "loading" && <Skeleton width="3rem" />}
         {status === "authenticated" && (

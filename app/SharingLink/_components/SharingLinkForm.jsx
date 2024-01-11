@@ -11,7 +11,7 @@ import ErrorMessage from "@/app/components/ErrorMessage";
 import Spinner from "@/app/components/Spinner";
 import SimpleMDE from "react-simplemde-editor";
 
-const IdaeForm = ({ idea, userId }) => {
+const SharingLinkForm = ({ link, userId }) => {
   const {
     register,
     control,
@@ -28,18 +28,18 @@ const IdaeForm = ({ idea, userId }) => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setIsSubmiting(true);
-      if (!userId) return router.push("/api/auth/signin");
 
       data.userId = userId;
-      if (idea) await axios.patch("/api/pfeIdeas/" + idea.id, data);
-      else await axios.post("/api/pfeIdeas", data);
-      router.push("/PfeIdeas");
+      if (link) data.id = link.id;
+      if (link) await axios.patch("/api/sharingLink/" + link.id, data);
+      else await axios.post("/api/sharingLink", data);
+      router.push("/SharingLink");
       router.refresh();
     } catch (error) {
       setIsSubmiting(false);
-      setError("error ideas");
+      setError("error Sharing Link");
+      console.log(error);
     }
-    console.log(data);
   });
   return (
     <div className=" max-w-xl  p-1 m-1">
@@ -48,7 +48,7 @@ const IdaeForm = ({ idea, userId }) => {
 
         <input
           type="text"
-          defaultValue={idea?.title}
+          defaultValue={link?.title}
           placeholder="title"
           {...register("title")}
         />
@@ -57,19 +57,19 @@ const IdaeForm = ({ idea, userId }) => {
         <Controller
           name="content"
           control={control}
-          defaultValue={idea?.content}
+          defaultValue={link?.content}
           render={({ field }) => (
-            <SimpleMDE placeholder="description" {...field} />
+            <SimpleMDE placeholder="Links..." {...field} />
           )}
         />
         {errors.content && <ErrorMessage error={errors.content.message} />}
 
         <button disabled={isSubmiting}>
-          {idea ? "Update Idea" : "New Idea"} {isSubmiting && <Spinner />}
+          {link ? "Update Link" : "New Link"} {isSubmiting && <Spinner />}
         </button>
       </form>
     </div>
   );
 };
 
-export default IdaeForm;
+export default SharingLinkForm;

@@ -8,10 +8,30 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 
 const page = async ({ params }) => {
   const session = await getServerSession(authOptions);
-  const user = await prisma.user.findUnique({
-    where: { email: session.user.email },
+  const idea = await prisma.pfeideas.findUnique({
+    where: { id: params.id },
   });
-  const idea = await prisma.pfeideas.findUnique({ where: { id: params.id } });
+
+  if (session) {
+    const user = await prisma?.user?.findUnique({
+      where: { email: session?.user?.email },
+    });
+    return (
+      <div className="prose  prose-Slate bg-red-50 p-6 rounded-lg">
+        <h3>{idea.title}</h3>
+        <Markdown>{idea.content}</Markdown>
+        <p>{idea.createdAt.toDateString()}</p>
+        {session && idea.userId === user.id && (
+          <div className="flex gap-2">
+            <button>
+              <idea href={`/PfeIdeas/${params.id}/edite`}>Edite idea</idea>
+            </button>
+            <PopupModel url={`/api/PfeIdeas/${params.id}`} />
+          </div>
+        )}
+      </div>
+    );
+  }
   if (!idea) return { notFound: true };
 
   return (
@@ -19,14 +39,6 @@ const page = async ({ params }) => {
       <h3>{idea.title}</h3>
       <Markdown>{idea.content}</Markdown>
       <p>{idea.createdAt.toDateString()}</p>
-      {session && idea.userId === user.id && (
-        <div className="flex gap-2">
-          <button>
-            <Link href={`/PfeIdeas/${params.id}/edite`}>Edite Idea</Link>
-          </button>
-          <PopupModel url={`/api/pfeIdeas/${params.id}`} />
-        </div>
-      )}
     </div>
   );
 };

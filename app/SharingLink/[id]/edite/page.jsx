@@ -1,12 +1,15 @@
 import prisma from "@/prisma/client";
-import PfeIdeaForm from "../../_components/SharingLinkForm";
+
 import { notFound } from "next/navigation";
+import SharingLinkForm from "../../_components/SharingLinkForm";
 
-const UpdateIdea = async ({ params }) => {
-  const idea = await prisma.pfeideas.findUnique({ where: { id: params.id } });
-  if (!idea) notFound();
+const UpdateLink = async ({ params }) => {
+  const link = await prisma.sharingLinks.findUnique({
+    where: { id: params.id },
+  });
+  if (!link) notFound();
 
-  return <PfeIdeaForm idea={idea} />;
+  return <SharingLinkForm link={link} />;
 };
 
-export default UpdateIdea;
+export default UpdateLink;
