@@ -1,12 +1,9 @@
 import prisma from "@/prisma/client";
-import { getServerSession } from "next-auth";
 import Link from "next/link";
 import Markdown from "react-markdown";
 import Image from "next/image";
-import { authOptions } from "../api/auth/[...nextauth]/authOptions";
 
 const page = async () => {
-  const session = await getServerSession(authOptions);
   const ideas = await prisma?.pfeideas?.findMany();
   const users = await prisma.user?.findMany();
 
@@ -47,7 +44,7 @@ const page = async () => {
                   </div>
                 );
               }
-              return null; // If no match, return null
+              return null;
             })}
           </div>
         ))}

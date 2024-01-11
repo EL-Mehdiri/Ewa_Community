@@ -28,9 +28,10 @@ const IdaeForm = ({ idea, userId }) => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setIsSubmiting(true);
-      if (!userId) return router.push("/api/auth/signin");
+      // if (!userId) return router.push("/api/auth/signin");
 
       data.userId = userId;
+      if (idea) data.id = idea.id;
       if (idea) await axios.patch("/api/pfeIdeas/" + idea.id, data);
       else await axios.post("/api/pfeIdeas", data);
       router.push("/PfeIdeas");
