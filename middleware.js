@@ -4,7 +4,7 @@ export const config = {
     matcher: [
         "/PfeIdeas/newIdea",
         "/PfeIdeas/:id/edite",
-
-
+        "/SharingLink/newLink",
+        "/SharingLink/:id/edite",
     ]
 }
