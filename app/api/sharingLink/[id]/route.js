@@ -34,7 +34,7 @@ export async function DELETE(request, { params }) {
     const link = await prisma.sharingLinks.findUnique({ where: { id: params.id } })
     if (!link) return NextResponse.json({ error: "link is not Exist !!! " }, { status: 404 })
     await prisma.sharingLinks.delete({
-        where: { id: idea.id },
+        where: { id: link.id },
     })
     return NextResponse.json({})
 }

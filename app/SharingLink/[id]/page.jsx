@@ -18,11 +18,11 @@ const page = async ({ params }) => {
     });
     return (
       <div className="prose  prose-Slate bg-red-50 p-6 rounded-lg">
-        <h3>{link.title}</h3>
+        <h3>{link?.title}</h3>
 
-        <Markdown>{link.content}</Markdown>
+        <Markdown>{link?.content}</Markdown>
         <p>{link.createdAt.toDateString()}</p>
-        {session && link.userId === user.id && user.role === "ADMIN" && (
+        {session && link.userId === user.id && (
           <div className="flex gap-2">
             <button>
               <Link href={`/SharingLink/${params.id}/edite`}>Edite link</Link>
@@ -37,9 +37,9 @@ const page = async ({ params }) => {
 
   return (
     <div className="prose  prose-Slate bg-red-50 p-6 rounded-lg">
-      <h3>{link.title}</h3>
-      <Markdown>{link.content}</Markdown>
-      <p>{link.createdAt.toDateString()}</p>
+      <h3>{link?.title}</h3>
+      <Markdown>{link?.content}</Markdown>
+      <p>{link?.createdAt.toDateString()}</p>
     </div>
   );
 };
