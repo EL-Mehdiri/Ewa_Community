@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-
+import toast from "react-hot-toast";
 const PopupModel = ({ url }) => {
   const router = useRouter();
   useEffect(() => {
@@ -12,14 +12,16 @@ const PopupModel = ({ url }) => {
     };
     init();
   }, []);
+
   const onDelete = async () => {
     try {
       await axios.delete(url);
-
       router.push("/");
       router.refresh();
+      toast.success("Deleted Successfully!");
     } catch (error) {
       console.log("Error deleting idea", error);
+      toast.error("An Error Occurred! Please Try Again Later.");
     }
   };
 

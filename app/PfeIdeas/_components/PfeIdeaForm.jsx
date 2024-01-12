@@ -10,6 +10,7 @@ import { IdeaSchema } from "@/app/api/validationSchemas";
 import ErrorMessage from "@/app/components/ErrorMessage";
 import Spinner from "@/app/components/Spinner";
 import SimpleMDE from "react-simplemde-editor";
+import toast from "react-hot-toast";
 
 const IdaeForm = ({ idea, userId }) => {
   const {
@@ -28,19 +29,20 @@ const IdaeForm = ({ idea, userId }) => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setIsSubmiting(true);
-      // if (!userId) return router.push("/api/auth/signin");
-
       data.userId = userId;
       if (idea) data.id = idea.id;
       if (idea) await axios.patch("/api/pfeIdeas/" + idea.id, data);
       else await axios.post("/api/pfeIdeas", data);
       router.push("/PfeIdeas");
       router.refresh();
+      toast.success(idea ? "Successfully Updated!" : "Successfully created");
     } catch (error) {
       setIsSubmiting(false);
-      setError("error ideas");
+      // toast error
+
+      toast.error("An Error Occurred! Please Try Again Later.");
+      console.log(error);
     }
-    console.log(data);
   });
   return (
     <div className=" max-w-xl  p-1 m-1">

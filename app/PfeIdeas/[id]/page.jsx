@@ -24,7 +24,7 @@ const page = async ({ params }) => {
         {session && idea.userId === user.id && (
           <div className="flex gap-2">
             <button>
-              <Link href={`/PfeIdeas/${params.id}/edit`}>Edit Idea</Link>
+              <Link href={`/PfeIdeas/${params.id}/edite`}>Edit Idea</Link>
             </button>
             <PopupModel url={`/api/pfeIdeas/${params.id}`} />
           </div>
