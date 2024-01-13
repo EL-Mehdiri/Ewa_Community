@@ -1,10 +1,12 @@
 import prisma from "@/prisma/client";
 import Image from "next/image";
 import Link from "next/link";
+import { cache } from "react";
 import Markdown from "react-markdown";
+const fetchUser = cache(() => prisma?.user?.findMany());
 
 const Content = async ({ data, href }) => {
-  const users = await prisma.user?.findMany();
+  const users = await fetchUser();
   return (
     <Link
       href={href}
