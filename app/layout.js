@@ -3,6 +3,9 @@ import './globals.css'
 import Providers from './api/auth/Providers'
 import NavBar from './components/NavBar'
 import { Toaster } from "react-hot-toast"
+import SideBare from './components/mainPage/SideBare'
+import Latest from './components/mainPage/Latest'
+import Banner from './components/mainPage/Banner'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,8 +20,14 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <Providers>
           <NavBar />
-          <main className='p-10'>
-            {children}
+          <main className='p-5 grid container mx-auto grid-cols-4 gap-6'>
+            <SideBare />
+            <section className="col-span-2">
+
+              <Banner />
+              {children}
+            </section>
+            <Latest />
           </main>
           <Toaster />
         </Providers>

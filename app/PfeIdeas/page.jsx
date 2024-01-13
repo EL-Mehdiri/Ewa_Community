@@ -5,6 +5,7 @@ import Image from "next/image";
 
 const page = async () => {
   const ideas = await prisma?.pfeideas?.findMany();
+
   const users = await prisma.user?.findMany();
 
   return (

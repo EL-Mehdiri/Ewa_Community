@@ -1,12 +1,21 @@
 import { getServerSession } from 'next-auth'
 import { authOptions } from './api/auth/[...nextauth]/authOptions'
+import Content from './components/mainPage/ContentPage'
+import SideBare from './components/mainPage/SideBare'
+import Image from "next/image"
+import Link from "next/link"
 
 
 export default async function Home() {
   const session = await getServerSession(authOptions)
+
+
   return (
-    <main className='p-5'>
-      <p className="text-4xl">Hello, {session && <span>{session.user.name}</span>}</p>
+    <main >
+      {/* content  */}
+
+      {/* side bar 2  */}
+
     </main>
   )
 }
