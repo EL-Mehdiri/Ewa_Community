@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const Banner = () => {
+const Banner = ({ href }) => {
   return (
     <>
       <div className="bg-[#FE8174] p-10 rounded-lg">
@@ -15,7 +15,7 @@ const Banner = () => {
         <button>
           <Link
             className="bg-white rounded-full cursor-pointer text-[#967DFC]  px-8 py-4"
-            href={"/SharingLink/newLink"}
+            href={href}
           >
             Create
           </Link>

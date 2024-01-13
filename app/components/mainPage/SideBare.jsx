@@ -11,7 +11,7 @@ function SideBare() {
     { title: "Sharing Link", href: "/SharingLink" },
   ];
   return (
-    <aside className="w-fit space-y-4 ">
+    <aside className="w-fit fixed space-y-4 ">
       <div>
         <Image width={355} height={243} src="/Gif.png" />
       </div>
@@ -22,7 +22,7 @@ function SideBare() {
             className={`${
               link.href == pathName
                 ? "bg-[#967DFC] rounded-full cursor-pointer  p-4"
-                : "bg-[#F1F2F4] rounded-full cursor-pointer  p-4"
+                : "bg-[#F1F2F4] hover:bg-[#967DFC] shadow-2xl rounded-full cursor-pointer  p-4"
             }`}
           >
             <Link href={link.href}>{link.title}</Link>

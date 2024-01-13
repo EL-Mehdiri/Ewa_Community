@@ -1,13 +1,14 @@
+import prisma from "@/prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import Markdown from "react-markdown";
 
-const Content = ({ link, users, href }) => {
+const Content = async ({ data, href }) => {
+  const users = await prisma.user?.findMany();
   return (
     <Link
       href={href}
-      key={link.id}
-      className="bg-black flex mb-5 gap-10 text-white object-contain relative p-8 w-full rounded-lg"
+      className="bg-gradient-to-l from-black to-[#3B3B3B] flex mb-5 gap-10 text-white object-contain relative p-16 w-full rounded-lg"
     >
       <Image src={"/Pattern.png"} fill />
       <svg
@@ -29,15 +30,14 @@ const Content = ({ link, users, href }) => {
           </clipPath>
         </defs>
       </svg>
-
       <div className="space-y-10">
-        <h3> {link.title}</h3>
+        <h3> {data?.title}</h3>
 
-        <Markdown className="text-lg leading-10">{link.content}</Markdown>
+        <Markdown className="text-lg leading-10">{data?.content}</Markdown>
 
         {users.map((user) => {
-          // Check if the userId of the idea matches the id of the user
-          if (link?.userId === user?.id) {
+          // Check if the userId of the data matches the id of the user
+          if (data?.userId === user?.id) {
             return (
               <div key={user.id} className="flex items-center gap-4">
                 {user.image ? (

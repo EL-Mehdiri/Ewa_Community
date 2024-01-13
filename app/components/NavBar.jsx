@@ -12,7 +12,7 @@ const NavBar = () => {
   const { status, data: session } = useSession();
 
   return (
-    <header className=" bg-white ">
+    <header className=" bg-white  ">
       <div className="container flex   mx-auto justify-between  items-center">
         <Link href="/">L O G O</Link>
 

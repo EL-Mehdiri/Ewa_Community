@@ -20,14 +20,15 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <Providers>
           <NavBar />
-          <main className='p-5 grid container mx-auto grid-cols-4 gap-6'>
-            <SideBare />
-            <section className="col-span-2">
-
-              <Banner />
+          <main className='p-5  grid container mx-auto grid-cols-4 gap-6'>
+            <div className='col-span-1 '>
+              <SideBare />
+            </div>
+            <section className="col-span-3 ">
+              {/* <Banner /> */}
               {children}
             </section>
-            <Latest />
+
           </main>
           <Toaster />
         </Providers>

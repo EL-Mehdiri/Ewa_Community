@@ -1,19 +1,23 @@
 import prisma from "@/prisma/client";
-import Link from "next/link";
-import Markdown from "react-markdown";
-import Image from "next/image";
+
 import Content from "../components/mainPage/ContentPage";
+import Latest from "../components/mainPage/Latest";
+import Banner from "../components/mainPage/Banner";
 
 const page = async () => {
   const links = await prisma?.sharingLinks?.findMany();
 
-  const users = await prisma.user?.findMany();
-
   return (
-    <div className="">
-      {links.map((link) => (
-        <Content link={link} users={users} href={`/SharingLink/${link.id}`} />
-      ))}
+    <div className="grid gap-6 grid-cols-3">
+      <div className="col-span-2 ">
+        <Banner href="/SharingLink/newLink" />
+        {links.map((link) => (
+          <Content key={link.id} data={link} href={`/SharingLink/${link.id}`} />
+        ))}
+      </div>
+      <div className="col-span-1">
+        <Latest />
+      </div>
     </div>
   );
 };
