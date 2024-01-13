@@ -11,7 +11,7 @@ const page = async () => {
     <PageWrapper>
       <div className="grid gap-6 grid-cols-3">
         <div className="col-span-2 ">
-          <Banner href="/SharingLink/newLink" />
+          <Banner href="/SharingLink/newLink" text={"Ideas"} />
           {ideas.map((idea) => (
             <Content key={idea.id} data={idea} href={`/PfeIdeas/${idea.id}`} />
           ))}

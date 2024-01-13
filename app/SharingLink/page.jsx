@@ -1,5 +1,4 @@
 import prisma from "@/prisma/client";
-
 import Content from "../components/mainPage/ContentPage";
 import Latest from "../components/mainPage/Latest";
 import Banner from "../components/mainPage/Banner";
@@ -12,7 +11,7 @@ const page = async () => {
     <PageWrapper>
       <div className="grid gap-6 grid-cols-3">
         <div className="col-span-2 ">
-          <Banner href="/SharingLink/newLink" />
+          <Banner href="/SharingLink/newLink" bg={"#FE8174"} text={"Link"} />
           {links.map((link) => (
             <Content
               key={link.id}
