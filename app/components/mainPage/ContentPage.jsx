@@ -30,16 +30,18 @@ const Content = async ({ data, href }) => {
           </clipPath>
         </defs>
       </svg>
-      <div className="space-y-10">
-        <h3> {data?.title}</h3>
+      <div className="space-y-[25px]">
+        <h3 className="text-[48px] font-normal  "> {data?.title}</h3>
 
-        <Markdown className="text-lg leading-10">{data?.content}</Markdown>
+        <Markdown className="text-[24px] font-normal leading-10">
+          {data?.content}
+        </Markdown>
 
         {users.map((user) => {
           // Check if the userId of the data matches the id of the user
           if (data?.userId === user?.id) {
             return (
-              <div key={user.id} className="flex items-center gap-4">
+              <div key={user.id} className="flex  items-center gap-6">
                 {user.image ? (
                   <Image
                     width={50}
@@ -53,7 +55,7 @@ const Content = async ({ data, href }) => {
                     ?
                   </div>
                 )}
-                <span>By {user.name}</span>
+                <p className="text-[18px] font-medium mt-5 ">By {user.name}</p>
               </div>
             );
           }

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-const Latest = () => {
+const Latest = ({ data }) => {
   return (
     <aside className=" space-y-4 ">
       <div className="p-6 bg-blue-500 rounded-lg">
