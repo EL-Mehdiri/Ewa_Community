@@ -17,6 +17,7 @@ import SideBare from "../components/mainPage/SideBare";
 
 const page = async () => {
   const links = await prisma?.sharingLinks?.findMany();
+  console.log(links);
 
   return (
     <PageWrapper>
