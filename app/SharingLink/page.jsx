@@ -5,21 +5,18 @@ import Banner from "../components/mainPage/Banner";
 import PageWrapper from "../PageAnimation";
 import SideBare from "../components/mainPage/SideBare";
 
-async function getData() {
-  const res = await fetch("http://localhost:3000/api/sharingLink");
+// async function getData() {
+//   const res = await fetch("http://localhost:3000/api/sharingLink");
 
-  if (!res.ok) {
-    console.log("Failed to fetch data");
-  }
+//   if (!res.ok) {
+//     throw new Error("Failed to fetch data");
+//   }
 
-  return res.json();
-}
+//   return res.json();
+// }
 
 const page = async () => {
-  // const links = await prisma?.sharingLinks?.findMany();
-  // console.log(links);
-  const links = await getData();
-  // console.log(data);
+  const links = await prisma?.sharingLinks?.findMany();
 
   return (
     <PageWrapper>
