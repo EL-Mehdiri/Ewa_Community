@@ -5,6 +5,7 @@ import { cache } from "react";
 import PageWrapper from './PageAnimation';
 import Latest from "./components/mainPage/Latest";
 import Banner from "./components/mainPage/Banner";
+import SideBare from "./components/mainPage/SideBare";
 
 const fetchIdeas = cache(() => prisma?.pfeideas?.findMany());
 const fetchLink = cache(() => prisma?.sharingLinks?.findMany());
@@ -17,7 +18,10 @@ export default async function Home() {
 
   return (
     <PageWrapper>
-      <div className="grid gap-6 grid-cols-3">
+      <div className="p-5  grid container mx-auto grid-cols-4 gap-6">
+        <div className='col-span-1 '>
+          <SideBare />
+        </div>
         <div className="col-span-2 ">
           <Banner href="/PfeIdeas/newIdea" text={"Ideas"} />
           {ideas.map((idea) => (

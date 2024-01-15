@@ -4,7 +4,10 @@ import "react-loading-skeleton/dist/skeleton.css";
 const LoadingIdeas = () => {
   const ideas = [1, 2, 3, 4, 5, 6];
   return (
-    <div className="grid gap-6 grid-cols-3">
+    <div className="p-5  grid container mx-auto grid-cols-4 gap-6">
+      <div className="col-span-1 ">
+        <Skeleton height="20rem" />
+      </div>
       <div className="col-span-2 space-y-10 ">
         <div>
           <div className="grid grid-cols-3  gap-7 ">

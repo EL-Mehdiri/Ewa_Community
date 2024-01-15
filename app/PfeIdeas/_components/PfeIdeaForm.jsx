@@ -45,12 +45,7 @@ const IdaeForm = ({ idea, userId }) => {
     }
   });
   return (
-    <div
-      className="bg-cover bg-center  items-center justify-center"
-      style={{
-        backgroundImage: "url('background.png')",
-      }}
-    >
+    <div className="bg-cover bg-center  items-center justify-center">
       <div className=" bg-white p-8 rounded text-center text-black  shadow-lg">
         <h1 className=" text-[32px] font-medium text-center text-gray-700">
           Start sharing <br /> your content with others

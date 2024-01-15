@@ -28,17 +28,9 @@ export async function POST(request) {
 
 
 export async function GET(request) {
-    const body = await request.json();
-
-    if (!body.userId) {
-        const links = await prisma.sharingLinks.findMany();
-        return NextResponse.json(links)
-    }
-    const links = await prisma.sharingLinks.findMany({ id: body.userId });
-
-    console.log(links)
-
+    const links = await prisma.sharingLinks.findMany();
 
     return NextResponse.json(links)
+
 }
 
