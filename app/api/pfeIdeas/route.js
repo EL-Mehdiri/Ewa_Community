@@ -30,6 +30,11 @@ export async function POST(request) {
 export async function GET(request) {
     const body = await request.json();
 
+    if (!body.userId) {
+        const ideas = await prisma.pfeideas.findMany();
+        return NextResponse.json(ideas)
+    }
+
     const ideas = await prisma.pfeideas.findMany({ id: body.userId });
 
     return NextResponse.json(ideas)

@@ -1,5 +1,4 @@
 import React from "react";
-import PfeIdeaForm from "../_components/PfeIdeaForm";
 import dynamic from "next/dynamic";
 import Spinner from "@/app/components/Spinner";
 import prisma from "@/prisma/client";

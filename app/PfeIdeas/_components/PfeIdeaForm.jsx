@@ -45,32 +45,48 @@ const IdaeForm = ({ idea, userId }) => {
     }
   });
   return (
-    <div className=" max-w-xl  p-1 m-1">
-      <form onSubmit={onSubmit} className="flex flex-col">
-        {error && <ErrorMessage error={error} />}
+    <div
+      className="bg-cover bg-center  items-center justify-center"
+      style={{
+        backgroundImage: "url('background.png')",
+      }}
+    >
+      <div className=" bg-white p-8 rounded text-center text-black  shadow-lg">
+        <h1 className=" text-[32px] font-medium text-center text-gray-700">
+          Start sharing <br /> your content with others
+        </h1>
+        <div className="form-container mt-8">
+          <form onSubmit={onSubmit} className="flex flex-col">
+            {error && <ErrorMessage error={error} />}
 
-        <input
-          type="text"
-          defaultValue={idea?.title}
-          placeholder="title"
-          {...register("title")}
-        />
-        {errors.title && <ErrorMessage error={errors.title.message} />}
+            <input
+              type="text"
+              className=" w-full px-4 py-2 bg-gray-200 border-0 rounded focus:outline-none focus:bg-gray-300 pl-11 mb-4"
+              defaultValue={idea?.title}
+              placeholder="title"
+              {...register("title")}
+            />
+            {errors.title && <ErrorMessage error={errors.title.message} />}
+            <Controller
+              name="content"
+              className=" w-full px-4 py-2 bg-gray-200 border-0 rounded focus:outline-none focus:bg-gray-300 pl-11 mb-14"
+              control={control}
+              defaultValue={idea?.content}
+              render={({ field }) => (
+                <SimpleMDE placeholder="description" {...field} />
+              )}
+            />
+            {errors.content && <ErrorMessage error={errors.content.message} />}
 
-        <Controller
-          name="content"
-          control={control}
-          defaultValue={idea?.content}
-          render={({ field }) => (
-            <SimpleMDE placeholder="description" {...field} />
-          )}
-        />
-        {errors.content && <ErrorMessage error={errors.content.message} />}
-
-        <button disabled={isSubmiting}>
-          {idea ? "Update Idea" : "New Idea"} {isSubmiting && <Spinner />}
-        </button>
-      </form>
+            <button
+              className=" text-white font-medium text-xl border-none cursor-pointer bg-indigo-500  hover:bg-indigo-700 focus:outline-none"
+              disabled={isSubmiting}
+            >
+              {idea ? "Update Idea" : "New Idea"} {isSubmiting && <Spinner />}
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };
