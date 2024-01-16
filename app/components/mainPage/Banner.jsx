@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const Banner = ({ href, bg, text }) => {
+const Banner = ({ href, maintext, text }) => {
   return (
     <>
       <div
@@ -12,10 +12,18 @@ const Banner = ({ href, bg, text }) => {
         } bg-gradient-to-r p-10 rounded-lg`}
       >
         <div className="flex justify-between">
-          <h2 className="leading-[60px] text-white">
-            Lorem ipsum dolor sit <br /> amet, consectetur <br /> adipiscing
-            elit?
-          </h2>
+          {text === "Links" ? (
+            <h2 className="leading-[60px] text-white">
+              The Power of Sharing Links:
+              <span className="text-[#660adfbe]"> Maximize Your Reach</span>
+            </h2>
+          ) : (
+            <h2 className="leading-[60px] text-white">
+              Creative New Project Ideas to
+              <span className="text-[#660adfbe]"> Inspire Your Creativity</span>
+            </h2>
+          )}
+
           <Image src={"/Vector.png"} width={258} height={254} alt="avarat" />
         </div>
         <button>

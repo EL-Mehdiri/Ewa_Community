@@ -15,7 +15,7 @@ const page = async () => {
           <SideBare />
         </div>
         <div className="col-span-2 ">
-          <Banner href="/SharingLink/newLink" bg={"#FE8174"} text={"Link"} />
+          <Banner href="/SharingLink/newLink" text={"Links"} />
           {links.map((link) => (
             <Content
               key={link.id}
