@@ -1,13 +1,14 @@
+import prisma from "@/prisma/client";
 import Image from "next/image";
 import Link from "next/link";
-const Latest = ({ data }) => {
+const Latest = async () => {
+  const news = await prisma.news.findMany();
+  console.log(news[0]);
   return (
     <aside className=" space-y-4 ">
-      <div className="p-6 bg-blue-500 rounded-lg">
-        <h4 className="leading-[40px] text-white">
-          Lorem ipsum dolor sit <br /> amet, consectetur <br /> adipiscing elit?
-        </h4>
-        <Link className="flex  items-center gap-4" href={"/"}>
+      <div className="p-6 bg-blue-500 overflow-clip rounded-lg">
+        <h4 className="leading-[40px] text-white">{news[0].title}</h4>
+        <Link className="flex  items-center gap-4" href={news[0].id}>
           see more
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -23,11 +24,11 @@ const Latest = ({ data }) => {
           </svg>
         </Link>
       </div>
-      <div className="p-6 bg-yellow-400 rounded-lg">
-        <h4 className="leading-[40px] text-white">
-          Lorem ipsum dolor sit <br /> amet, consectetur <br /> adipiscing elit?
+      <div className="p-6 bg-yellow-400 overflow-clip  rounded-lg">
+        <h4 className="leading-[40px] w-[500px] text-white whitespace-pre-wrap">
+          {news[1].title}
         </h4>
-        <Link className="flex  items-center gap-4" href={"/"}>
+        <Link className="flex  items-center gap-4" href={`/News/${news[1].id}`}>
           see more
           <svg
             xmlns="http://www.w3.org/2000/svg"

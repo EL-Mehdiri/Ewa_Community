@@ -9,26 +9,20 @@ const page = async () => {
   const links = await prisma?.sharingLinks?.findMany();
 
   return (
-    <PageWrapper>
-      <div className="p-5  grid container mx-auto grid-cols-4 gap-6">
-        <div className="col-span-1 ">
-          <SideBare />
-        </div>
-        <div className="col-span-2 ">
-          <Banner href="/SharingLink/newLink" text={"Links"} />
-          {links.map((link) => (
-            <Content
-              key={link.id}
-              data={link}
-              href={`/SharingLink/${link.id}`}
-            />
-          ))}
-        </div>
-        <div className="col-span-1">
-          <Latest />
-        </div>
+    <div className="p-5  grid container mx-auto grid-cols-4 gap-6">
+      <div className="col-span-1 ">
+        <SideBare />
       </div>
-    </PageWrapper>
+      <div className="col-span-2 ">
+        <Banner href="/SharingLink/newLink" text={"Links"} />
+        {links.map((link) => (
+          <Content key={link.id} data={link} href={`/SharingLink/${link.id}`} />
+        ))}
+      </div>
+      <div className="col-span-1">
+        <Latest />
+      </div>
+    </div>
   );
 };
 

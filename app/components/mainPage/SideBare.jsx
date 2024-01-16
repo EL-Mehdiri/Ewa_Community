@@ -21,8 +21,8 @@ function SideBare() {
             key={link.href}
             className={`${
               link.href == pathName
-                ? "bg-[#967DFC] rounded-full cursor-pointer  p-4"
-                : "bg-[#F1F2F4] hover:bg-[#967DFC] shadow-2xl rounded-full cursor-pointer  p-4"
+                ? "bg-[#967DFC] text-white font-medium rounded-full cursor-pointer  p-4"
+                : "bg-[#F1F2F4] hover:bg-[#967DFC] font-medium shadow-2xl rounded-full cursor-pointer  p-4"
             }`}
           >
             <Link href={link.href}>{link.title}</Link>
