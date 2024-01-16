@@ -6,7 +6,11 @@ import PageWrapper from "../PageAnimation";
 import SideBare from "../components/mainPage/SideBare";
 
 const page = async () => {
-  const links = await prisma?.sharingLinks?.findMany();
+  const links = await prisma?.sharingLinks?.findMany({
+    orderBy: {
+      createdAt: "desc", // Assuming there's a createdAt field in your news model
+    },
+  });
 
   return (
     <div className="p-5  grid container mx-auto grid-cols-4 gap-6">

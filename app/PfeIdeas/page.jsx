@@ -6,7 +6,13 @@ import PageWrapper from "../PageAnimation";
 import { cache } from "react";
 import SideBare from "../components/mainPage/SideBare";
 
-const fetchIdeas = cache(() => prisma?.pfeideas?.findMany());
+const fetchIdeas = cache(() =>
+  prisma?.pfeideas?.findMany({
+    orderBy: {
+      createdAt: "desc", // Assuming there's a createdAt field in your news model
+    },
+  })
+);
 
 const page = async () => {
   const ideas = await fetchIdeas();

@@ -2,8 +2,12 @@ import prisma from "@/prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 const Latest = async () => {
-  const news = await prisma.news.findMany();
-  console.log(news[0]);
+  const news = await prisma.news.findMany({
+    take: 2,
+    orderBy: {
+      createdAt: "desc", // Assuming there's a createdAt field in your news model
+    },
+  });
   return (
     <aside className=" space-y-4 ">
       <div className="p-6 bg-blue-500 overflow-clip rounded-lg">
