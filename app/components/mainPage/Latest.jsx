@@ -12,7 +12,7 @@ const Latest = async () => {
     <aside className=" space-y-4 ">
       <div className="p-6 bg-blue-500 overflow-clip rounded-lg">
         <h4 className="leading-[40px] text-white">{news[0].title}</h4>
-        <Link className="flex  items-center gap-4" href={news[0].id}>
+        <Link className="flex  items-center gap-4" href={`/News/${news[0].id}`}>
           see more
           <svg
             xmlns="http://www.w3.org/2000/svg"

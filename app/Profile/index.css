@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.body {
+    background-color: #EFF0F4;
+    font-family: General Sans;
+}
+
+h1 {
+    font-family: General Sans;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    color: var(--Text-Color-White, #FFF);
+    width: 501px;
+    height: 186px;
+    flex-shrink: 0;
+
+}
+
+h2 {
+
+    /* height: 114.719px; */
+    flex-shrink: 0;
+    color: var(--Text-Color-White, #FFF);
+    font-family: General Sans;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+a {
+    color: #FFF;
+    font-family: General Sans;
+    font-size: 23.704px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.user {
+
+
+    height: 334px;
+    flex-shrink: 0;
+    background: linear-gradient(268deg, #FFABFC 0%, #A68CEE 100.64%);
+}
+
+.card {
+    z-index: 10;
+    bottom: 400px;
+    margin: 250px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+
+    padding: 66px;
+}
+
+.image {
+    background: rgb(227, 134, 214) 50% / cover no-repeat;
+    width: 230px;
+    height: 230px;
+    flex-shrink: 0;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    margin-bottom: 27px;
+
+
+
+}
+
+.profile {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 153px;
+}
+
+p {
+    font-family: General Sans;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    color: #0a0909;
+
+}
+
+label {
+    width: 427px;
+    height: 44px;
+    flex-shrink: 0;
+    display: block;
+
+
+
+
+}
+
+input {
+    background: #F1F2F4;
+    border-radius: 52PX;
+    border: 1px solid gray;
+
+}
+
+
+.formElement {
+    margin-left: 532px;
+    display: flex;
+}

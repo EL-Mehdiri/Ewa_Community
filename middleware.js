@@ -6,5 +6,7 @@ export const config = {
         "/PfeIdeas/:id/edite",
         "/SharingLink/newLink",
         "/SharingLink/:id/edite",
+        "/News/addNews",
+        "/News/:id/edite",
     ]
 }

@@ -33,7 +33,7 @@ const Content = async ({ data, href }) => {
         </defs>
       </svg>
       <div className="space-y-[25px]">
-        <h3 className="text-[48px] font-normal  "> {data?.title}</h3>
+        <h3 className="text-[48px] font-normal   "> {data?.title}</h3>
 
         <Markdown className="text-[24px] font-normal leading-10">
           {data?.content}
