@@ -42,6 +42,6 @@ export async function GET(req, { params }) {
         return NextResponse.json(flattenedResults);
     } catch (error) {
         console.error('Error executing search:', error);
-        return NextResponse.json({ error: 'Internal Server Error' });
+        return NextResponse.json({ error: 'Internal Server Error', error });
     }
 }

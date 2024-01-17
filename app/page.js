@@ -7,8 +7,19 @@ import Latest from "./components/mainPage/Latest";
 import Banner from "./components/mainPage/Banner";
 import SideBare from "./components/mainPage/SideBare";
 
-const fetchIdeas = cache(() => prisma?.pfeideas?.findMany());
-const fetchLink = cache(() => prisma?.sharingLinks?.findMany());
+const fetchIdeas = cache(() => prisma?.pfeideas?.findMany({
+  take: 2,
+  orderBy: {
+    createdAt: "desc",
+  },
+
+}));
+const fetchLink = cache(() => prisma?.sharingLinks?.findMany({
+  take: 2,
+  orderBy: {
+    createdAt: "desc",
+  },
+}));
 
 export default async function Home() {
   const ideas = await fetchIdeas();
