@@ -2,7 +2,6 @@ import prisma from "@/prisma/client";
 import SideBare from "../components/mainPage/SideBare";
 import Banner from "../components/mainPage/Banner";
 import Content from "../components/mainPage/ContentPage";
-import Latest from "../components/mainPage/Latest";
 
 const page = async () => {
   const articles = await prisma?.news?.findMany();

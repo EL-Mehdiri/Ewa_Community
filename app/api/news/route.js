@@ -27,7 +27,6 @@ export async function POST(request) {
       data: {
         title: validation.data.title,
         content: validation.data.content,
-        userId: validation.userId,
         image: imageUrl,
       },
     });

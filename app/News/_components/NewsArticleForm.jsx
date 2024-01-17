@@ -10,8 +10,6 @@ import { NewsSchema } from "@/app/api/validationSchemas";
 import ErrorMessage from "@/app/components/ErrorMessage";
 import Spinner from "@/app/components/Spinner";
 import SimpleMDE from "react-simplemde-editor";
-import SideBare from "@/app/components/mainPage/SideBare";
-import toast from "react-hot-toast";
 const ArticleForm = ({ article, userId }) => {
   const {
     register,
@@ -36,12 +34,12 @@ const ArticleForm = ({ article, userId }) => {
       // Append form fields
       formData.append("title", data.title);
       formData.append("content", data.content);
-      formData.append("userId", userId);
 
       // Append file
       if (file) {
         formData.append("file", file);
       }
+
       if (article) {
         await axios.patch("/api/news/" + article.id, formData);
       } else {
@@ -50,11 +48,9 @@ const ArticleForm = ({ article, userId }) => {
 
       router.push("/News");
       router.refresh();
-      toast.success("new article");
     } catch (error) {
       setIsSubmiting(false);
       setError("Error submitting article");
-      toast.error("Error submitting article");
     }
   });
 
