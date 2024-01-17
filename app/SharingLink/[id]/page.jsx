@@ -18,19 +18,27 @@ const page = async ({ params }) => {
       where: { email: session?.user?.email },
     });
     return (
-      <div className="p-5  grid container mx-auto grid-cols-4 gap-6">
+      <div className="p-5  grid container w-full mx-auto grid-cols-4 gap-6">
         <div className="col-span-1 ">
           <SideBare />
         </div>
-        <div className="prose  col-span-3  prose-Slate bg-red-50 p-6 rounded-lg">
-          <h3>{link?.title}</h3>
+        <div className="prose col-span-3 space-y-10 text-center text-white  prose-Slate  bg-gradient-to-l from-[#202020] to-[#424242f6]  p-6 rounded-lg">
+          <h1 className="text-white">{link?.title}</h1>
 
-          <Markdown>{link?.content}</Markdown>
+          <Markdown className="text-[24px] leading-10">
+            {link?.content}
+          </Markdown>
+
           <p>{link.createdAt.toDateString()}</p>
           {session && link.userId === user.id && (
-            <div className="flex gap-2">
-              <button>
-                <Link href={`/SharingLink/${params.id}/edite`}>Edite link</Link>
+            <div className="flex justify-center text-[18px] font-medium items-center gap-2">
+              <button className="rounded-full  font-bold py-2 px-8   bg-white">
+                <Link
+                  className="no-underline"
+                  href={`/SharingLink/${params.id}/edite`}
+                >
+                  Edit Link
+                </Link>
               </button>
               <PopupModel url={`/api/sharingLink/${params.id}`} />
             </div>
@@ -46,9 +54,9 @@ const page = async ({ params }) => {
       <div className="col-span-1 ">
         <SideBare />
       </div>
-      <div className="prose col-span-3  prose-Slate bg-red-50 p-6 rounded-lg">
-        <h3>{link?.title}</h3>
-        <Markdown>{link?.content}</Markdown>
+      <div className="prose col-span-3 space-y-10 text-center text-white  prose-Slate  bg-gradient-to-l from-[#202020] to-[#424242f6]  p-6 rounded-lg">
+        <h1 className="text-white">{link?.title}</h1>
+        <Markdown className="text-[24px] leading-10">{link?.content}</Markdown>
         <p>{link?.createdAt.toDateString()}</p>
       </div>
     </div>

@@ -31,7 +31,7 @@ const Banner = ({ href, maintext, text }) => {
             className="bg-white rounded-full cursor-pointer text-[#967DFC]  px-8 py-4"
             href={href}
           >
-            Create {text}
+            Create
           </Link>
         </button>
       </div>

@@ -29,7 +29,7 @@ const PopupModel = ({ url }) => {
     <div>
       <button
         type="button"
-        className=" bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+        className=" bg-red-500 rounded-full hover:bg-red-700 text-white font-bold py-2 px-8 "
         data-te-toggle="modal"
         data-te-target="#exampleModalCenter"
         data-te-ripple-init

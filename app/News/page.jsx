@@ -2,6 +2,7 @@ import prisma from "@/prisma/client";
 import SideBare from "../components/mainPage/SideBare";
 import Banner from "../components/mainPage/Banner";
 import Content from "../components/mainPage/ContentPage";
+import BannerNews from "./BannerNews";
 
 const page = async () => {
   const articles = await prisma?.news?.findMany();
@@ -12,7 +13,7 @@ const page = async () => {
         <SideBare />
       </div>
       <div className="col-span-3">
-        <Banner href="/News/addNews" text={"News"} />
+        <BannerNews href="/News/addNews" text={"News"} />
         <div className=" grid grid-cols-3 gap-5  overflow-hidden">
           {articles.map((article) => (
             <Content
