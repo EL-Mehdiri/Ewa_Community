@@ -23,7 +23,7 @@ const page = async ({ params }) => {
         <div className="col-span-1 ">
           <SideBare />
         </div>
-        <div className="prose col-span-3 space-y-10 text-center text-white  prose-Slate  bg-gradient-to-l from-[#202020] to-[#424242f6]  p-6 rounded-lg">
+        <div className="prose overflow-hidden col-span-3 space-y-10 text-center text-white  prose-Slate  bg-gradient-to-l from-[#202020] to-[#424242f6]  p-6 rounded-lg">
           {article.image && (
             <div className="relative w-full h-[400px] ">
               <Image src={article.image} fill alt="image" />
