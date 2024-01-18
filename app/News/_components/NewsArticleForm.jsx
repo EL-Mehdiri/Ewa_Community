@@ -103,7 +103,7 @@ const ArticleForm = ({ article, userId }) => {
                 ) : null}
               </div>
               <button
-                disabled={isSubmiting}
+                disabled={isSubmiting || !image}
                 className=" text-white font-medium text-xl border-none cursor-pointer bg-indigo-500  hover:bg-indigo-700 focus:outline-none"
               >
                 {article ? "Update Article" : "New Article"}{" "}
