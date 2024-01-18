@@ -55,7 +55,14 @@ const RegisterForm = () => {
         className="object-cover -z-10"
       />
       <div className="grid grid-cols-3 container mx-auto w-full ">
-        <div className="mr-8 col-span-2 border-white rounded-lg bg-white bg-opacity-75 shadow-lg p-8 "></div>
+        <div className="mr-8 col-span-2 border-white rounded-lg bg-white bg-opacity-75 shadow-lg p-8 ">
+          <Image
+            className="m-auto  "
+            src={"/Mobile_login-amico.png"}
+            width={700}
+            height={700}
+          />
+        </div>
 
         <div className="flex flex-col col-span-1 w-fit items-center justify-center rounded-lg border-white bg-white bg-opacity-75 shadow-lg p-8 ">
           <Image src={"/icon.svg"} width={112} height={39} alt="logo" />

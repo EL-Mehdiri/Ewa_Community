@@ -56,16 +56,26 @@ const LoginForm = () => {
         className="object-cover -z-10"
       />
       <div className="grid grid-cols-3 container mx-auto w-full ">
-        <div className="mr-8 col-span-2 border-white rounded-lg bg-white bg-opacity-75 shadow-lg p-8 "></div>
+        <div className="mr-8 col-span-2 border-white rounded-lg bg-white bg-opacity-75 shadow-lg p-8 ">
+          <Image
+            className="m-auto  "
+            src={"/Login-amico.png"}
+            width={500}
+            height={700}
+          />
+          <div className="text-center mt-4">
+            <h1 className="text-4xl font-semibol" style={{ color: "#967DFC" }}>
+              Welcome back
+            </h1>
+            <p className="text-gray-950 text-2xl" style={{ color: "#8B8996" }}>
+              Welcome back, Please enter your details.
+            </p>
+          </div>
+        </div>
 
         <div className="flex flex-col col-span-1 w-fit items-center justify-center rounded-lg border-white bg-white bg-opacity-75 shadow-lg p-8 ">
           <Image src={"/icon.svg"} width={112} height={39} alt="logo" />
-          <h1 className="text-4xl font-semibol" style={{ color: "#967DFC" }}>
-            Welcome back
-          </h1>
-          <p className="text-gray-600" style={{ color: "#8B8996" }}>
-            Welcome back, Please enter your details.
-          </p>
+
           <form onSubmit={onSubmit} className="mt-4 text-center">
             <label
               htmlFor="userName"
