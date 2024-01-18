@@ -59,7 +59,7 @@ const ArticleForm = ({ article, userId }) => {
           <div className="form-container mt-8">
             <form onSubmit={onSubmit} className="flex flex-col">
               {error && <ErrorMessage error={error} />}
-              {article.image && (
+              {article?.image && (
                 <div className="relative w-full h-[400px] mb-5 ">
                   <Image src={article.image} fill alt="image" />
                 </div>

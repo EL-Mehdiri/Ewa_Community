@@ -16,7 +16,7 @@ export const IdeaSchema = z.object({
             invalid_type_error:
                 "your content must be  made mostly of  alphabetical characters",
         })
-        .min(50, { message: "your title must contain at least 50 characters" }),
+        .min(10, { message: "your title must contain at least 50 characters" }),
 });
 export const NewsSchema = z.object({
     title: z

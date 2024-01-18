@@ -42,9 +42,8 @@ const Content = async ({ data, href, text }) => {
       </svg>
       <div className="space-y-[25px]">
         <h3
-          className={`text-[48px] font-normal ${
-            text && "text-[20px] font-normal"
-          }   `}
+          className={`text-[48px] leading-[44px] font-normal 
+          ${text && "text-[20px]  leading-[44px] font-normal"}   `}
         >
           {" "}
           {data?.title}
