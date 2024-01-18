@@ -14,20 +14,30 @@ const fetchIdeas = cache(() =>
   })
 );
 
-const page = async () => {
+const Page = async () => {
   const ideas = await fetchIdeas();
 
   return (
     <PageWrapper>
-      <div className="p-5  grid container mx-auto grid-cols-4 gap-6">
-        <div className="col-span-1 ">
+      <div className="p-5 grid container mx-auto grid-cols-4 gap-6">
+        <div className="col-span-1">
           <SideBare />
         </div>
-        <div className="col-span-2 ">
+        <div className="col-span-2">
           <Banner href="/PfeIdeas/newIdea" text={"Ideas"} />
-          {ideas.map((idea) => (
-            <Content key={idea.id} data={idea} href={`/PfeIdeas/${idea.id}`} />
-          ))}
+          {ideas && ideas.length ? (
+            ideas.map((idea) => (
+              <Content
+                key={idea.id}
+                data={idea}
+                href={`/PfeIdeas/${idea.id}`}
+              />
+            ))
+          ) : (
+            <h2 className="text-center font-bold text-gray-700 dark hover:text-blue-600 dark:hover:text-white transition duration-300 ease-in-out">
+              No Ideas Yet
+            </h2>
+          )}
         </div>
         <div className="col-span-1">
           <Latest />
@@ -37,4 +47,4 @@ const page = async () => {
   );
 };
 
-export default page;
+export default Page;

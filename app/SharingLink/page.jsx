@@ -5,7 +5,7 @@ import Banner from "../components/mainPage/Banner";
 import PageWrapper from "../PageAnimation";
 import SideBare from "../components/mainPage/SideBare";
 
-const page = async () => {
+const Page = async () => {
   const links = await prisma?.sharingLinks?.findMany({
     orderBy: {
       createdAt: "desc", // Assuming there's a createdAt field in your news model
@@ -13,21 +13,33 @@ const page = async () => {
   });
 
   return (
-    <div className="p-5  grid container mx-auto grid-cols-4 gap-6">
-      <div className="col-span-1 ">
-        <SideBare />
+    <PageWrapper>
+      <div className="p-5 grid container mx-auto grid-cols-4 gap-6">
+        <div className="col-span-1">
+          <SideBare />
+        </div>
+        <div className="col-span-2">
+          <Banner href="/SharingLink/newLink" text={"Links"} />
+          {links && links.length ? (
+            links.map((link) => (
+              <Content
+                key={link.id}
+                data={link}
+                href={`/SharingLink/${link.id}`}
+              />
+            ))
+          ) : (
+            <h2 className="text-center font-bold text-gray-700 dark hover:text-blue-600 dark:hover:text-white transition duration-300 ease-in-out">
+              No Links Yet
+            </h2>
+          )}
+        </div>
+        <div className="col-span-1">
+          <Latest />
+        </div>
       </div>
-      <div className="col-span-2 ">
-        <Banner href="/SharingLink/newLink" text={"Links"} />
-        {links.map((link) => (
-          <Content key={link.id} data={link} href={`/SharingLink/${link.id}`} />
-        ))}
-      </div>
-      <div className="col-span-1">
-        <Latest />
-      </div>
-    </div>
+    </PageWrapper>
   );
 };
 
-export default page;
+export default Page;

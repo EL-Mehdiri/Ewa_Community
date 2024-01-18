@@ -41,16 +41,17 @@ export default async function Home() {
           <SideBare />
         </div>
         <div className="col-span-2 ">
-          <Banner href="/PfeIdeas/newIdea" text={"Ideas"} />
+          <Banner href="/PfeIdeas/newIdea" text={"..."} />
           {ideas.map((idea) => (
+            <h2 className="p-5"> Ideas </h2>,
             <Content key={idea.id} data={idea} href={`/PfeIdeas/${idea.id}`} />
           ))}
-          <h2 className="p-5"> Links </h2>
           {links.map((link) => (
-            <Content key={link.id} data={link} href={`/SharingLink/${link.id}`} />
-          ))}
-          <h2 className="p-5"> Links </h2>
+            <h2 className="p-5"> Links </h2>,
+            <Content key={link.id} data={link} href={`/SharingLink/${link.id}`} />,
+            ))}
           {news.map((article) => (
+            <h2 className="p-5"> News </h2>,
             <Content key={article.id} data={article} href={`/SharingLink/${article.id}`} />
           ))}
         </div>

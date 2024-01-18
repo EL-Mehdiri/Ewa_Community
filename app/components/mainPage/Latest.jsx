@@ -8,6 +8,13 @@ const Latest = async () => {
       createdAt: "desc", // Assuming there's a createdAt field in your news model
     },
   });
+  if (news.length === 0) {
+    return (
+      <div className="p-5 text-center font-bold text-gray-700 dark hover:text-blue-600 dark:hover:text-white transition duration-300 ease-in-out">
+        No latest news available.
+      </div>
+    );
+  }
   return (
     <aside className=" space-y-4 ">
       <div
@@ -49,7 +56,7 @@ const Latest = async () => {
         {news[1].image && <Image fill src={news[1]?.image} className="-z-10" />}
         <Link
           className="flex  text-white hover:text-slate-700 items-center gap-4"
-          href={`/News/${news[0].id}`}
+          href={`/News/${news[1].id}`}
         >
           see more
           <svg
