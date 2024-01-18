@@ -6,9 +6,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { UserSchema } from "@/app/api/validationSchemas";
 import { useForm } from "react-hook-form";
 import ErrorMessage from "@/app/components/ErrorMessage";
+import Image from "next/image";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 const RegisterForm = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -22,6 +25,8 @@ const RegisterForm = () => {
   const handleGoogleSignIn = async () => {
     try {
       await signIn("google");
+      router.push("/");
+      router.refresh();
     } catch (error) {
       console.error("Google Sign In failed", error);
     }
@@ -33,6 +38,8 @@ const RegisterForm = () => {
         email,
         password,
       });
+      router.push("/SignIn");
+      router.refresh();
 
       console.log("User registered successfully", response.data);
     } catch (error) {
@@ -40,23 +47,18 @@ const RegisterForm = () => {
     }
   });
   return (
-    <div
-      className="flex items-center justify-center h-screen bg-cover bg-center"
-      style={{ backgroundImage: 'url("RegisterBackground.jpeg")' }}
-    >
-      <div className="flex justify-center items-center h-screen">
-        <div
-          className="mr-8 border-white rounded-lg bg-white bg-opacity-75 shadow-lg p-8 w-96 h-96"
-          style={{ width: "500px", height: "600px" }}
-        >
-          {/* Add image */}
-        </div>
+    <div className="flex relative  items-center justify-center h-screen bg-cover bg-center">
+      <Image
+        fill
+        src="/aperture-vintage-CV-BQDcnMCs-unsplash (2) 1.png"
+        alt=""
+        className="object-cover -z-10"
+      />
+      <div className="grid grid-cols-3 container mx-auto w-full ">
+        <div className="mr-8 col-span-2 border-white rounded-lg bg-white bg-opacity-75 shadow-lg p-8 "></div>
 
-        <div
-          className="flex flex-col items-center justify-center rounded-lg border-white bg-white bg-opacity-75 shadow-lg p-8 w-96 h-96"
-          style={{ width: "500px", height: "620px" }}
-        >
-          <img src="cdo.jpeg" alt="Logo" className="w-12 h-12" />
+        <div className="flex flex-col col-span-1 w-fit items-center justify-center rounded-lg border-white bg-white bg-opacity-75 shadow-lg p-8 ">
+          <Image src={"/icon.svg"} width={112} height={39} alt="logo" />
           <form onSubmit={onSubmit} className="mt-8 text-center">
             <label
               htmlFor="username"
@@ -124,19 +126,19 @@ const RegisterForm = () => {
             {errors.password && (
               <ErrorMessage error={errors.password.message} />
             )}
-            <p
-              className="text-pass mt-2 cursor-pointer text-righ mb-6"
-              style={{ color: "#6D5ABB" }}
-            >
-              Forgot your password?
-            </p>
 
             <button
               type="submit"
               className="w-80 h-14 px- text-white border-none rounded-full cursor-pointer hover:bg-purple-700 focus:outline-none bg-[#967DFC]"
             >
-              Sign in
+              Sign Up
             </button>
+            <p className="mt-4">
+              You have an account?{" "}
+              <Link href="/SignIn" style={{ color: "#967DFC" }}>
+                Sign In
+              </Link>
+            </p>
 
             <div className="mt-4 flex items-center justify-center">
               <button

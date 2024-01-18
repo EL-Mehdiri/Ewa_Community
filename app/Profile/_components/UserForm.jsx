@@ -4,12 +4,14 @@ import Image from "next/image";
 import userIcon from "../../../public/user icon.jpg";
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const UserForm = ({ user }) => {
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [file, setFile] = useState();
+  const router = useRouter();
 
   const onSubmit = async () => {
     try {
@@ -23,6 +25,8 @@ const UserForm = ({ user }) => {
           "Content-Type": "multipart/form-data",
         },
       });
+      router.push("/");
+      router.refresh();
     } catch (err) {
       console.log(err);
     }
@@ -93,7 +97,7 @@ const UserForm = ({ user }) => {
               htmlFor="password"
               className=" mb-2 block text-left text-gray-700 "
             >
-              New Password
+              Password
             </label>
             <input
               type="password"

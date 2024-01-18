@@ -27,7 +27,8 @@ export async function PATCH(request, { params }) {
       data: {
         username: validation.data.username,
         password: hashedPassword,
-        email: validation.data.email,
+        // email: validation.data.email,
+        // emailVerified: validation.data.email,
         image: imageUrl,
       },
     });
