@@ -9,6 +9,7 @@ export const config = {
         "/SharingLink/:id/edite",
         "/News/addNews",
         "/News/:id/edite",
+        "/Profile"
     ]
 }
 

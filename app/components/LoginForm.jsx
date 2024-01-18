@@ -16,8 +16,6 @@ const LoginForm = () => {
   const handleGoogleSignIn = async () => {
     try {
       await signIn("google");
-      router.push("/");
-      router.refresh();
     } catch (error) {
       console.error("Google Sign In failed", error);
     }
