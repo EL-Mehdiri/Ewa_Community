@@ -52,7 +52,7 @@ export default async function Home() {
           ))}
           {news.map((article) => (
             <h2 className="p-5"> News </h2>,
-            <Content key={article.id} data={article} href={`/SharingLink/${article.id}`} />
+            <Content key={article.id} data={article} href={`/News/${article.id}`} />
           ))}
         </div>
         <div className="col-span-1">
