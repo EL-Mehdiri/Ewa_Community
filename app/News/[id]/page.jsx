@@ -5,7 +5,7 @@ import prisma from "@/prisma/client";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import Markdown from "react-markdown";
-
+import Image from "next/image";
 const page = async ({ params }) => {
   const session = await getServerSession(authOptions);
 
@@ -17,12 +17,18 @@ const page = async ({ params }) => {
     const user = await prisma?.user?.findUnique({
       where: { email: session?.user?.email },
     });
+    console.log(article.image);
     return (
       <div className="p-5  grid container w-full mx-auto grid-cols-4 gap-6">
         <div className="col-span-1 ">
           <SideBare />
         </div>
         <div className="prose col-span-3 space-y-10 text-center text-white  prose-Slate  bg-gradient-to-l from-[#202020] to-[#424242f6]  p-6 rounded-lg">
+          {article.image && (
+            <div className="relative w-full h-[400px] ">
+              <Image src={article.image} fill alt="image" />
+            </div>
+          )}
           <h1 className="text-white">{article?.title}</h1>
 
           <Markdown className="text-[24px] leading-10">
@@ -54,11 +60,18 @@ const page = async ({ params }) => {
         <SideBare />
       </div>
       <div className="prose col-span-3 space-y-10 text-center text-white  prose-Slate  bg-gradient-to-l from-[#202020] to-[#424242f6]  p-6 rounded-lg">
+        {article.image && (
+          <div className="relative w-full h-[400px] ">
+            <Image src={article.image} fill alt="image" />
+          </div>
+        )}
         <h1 className="text-white">{article?.title}</h1>
+
         <Markdown className="text-[24px] leading-10">
           {article?.content}
         </Markdown>
-        <p>{article?.createdAt.toDateString()}</p>
+
+        <p>{article.createdAt.toDateString()}</p>
       </div>
     </div>
   );

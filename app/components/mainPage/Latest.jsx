@@ -10,9 +10,19 @@ const Latest = async () => {
   });
   return (
     <aside className=" space-y-4 ">
-      <div className="p-6 bg-blue-500 overflow-clip rounded-lg">
+      <div
+        className={`${
+          news[0].image
+            ? "overflow-clip object-contain rounded-lg p-6 relative"
+            : "p-6 bg-blue-500 overflow-clip rounded-lg"
+        }`}
+      >
         <h4 className="leading-[40px] text-white">{news[0].title}</h4>
-        <Link className="flex  items-center gap-4" href={`/News/${news[0].id}`}>
+        {news[0].image && <Image fill src={news[0]?.image} className="-z-10" />}
+        <Link
+          className="flex  text-white items-center gap-4"
+          href={`/News/${news[0].id}`}
+        >
           see more
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -28,11 +38,19 @@ const Latest = async () => {
           </svg>
         </Link>
       </div>
-      <div className="p-6 bg-yellow-400 overflow-clip  rounded-lg">
-        <h4 className="leading-[40px] w-[500px] text-white whitespace-pre-wrap">
-          {news[1].title}
-        </h4>
-        <Link className="flex  items-center gap-4" href={`/News/${news[1].id}`}>
+      <div
+        className={`${
+          news[1].image
+            ? "overflow-clip object-contain rounded-lg p-6 relative"
+            : "p-6 hover:bg-yellow-300 bg-yellow-400 overflow-clip rounded-lg"
+        }`}
+      >
+        <h4 className="leading-[40px] text-white">{news[1].title}</h4>
+        {news[1].image && <Image fill src={news[1]?.image} className="-z-10" />}
+        <Link
+          className="flex  text-white hover:text-slate-700 items-center gap-4"
+          href={`/News/${news[0].id}`}
+        >
           see more
           <svg
             xmlns="http://www.w3.org/2000/svg"

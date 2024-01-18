@@ -5,14 +5,22 @@ import { cache } from "react";
 import Markdown from "react-markdown";
 const fetchUser = cache(() => prisma?.user?.findMany());
 
-const Content = async ({ data, href }) => {
+const Content = async ({ data, href, text }) => {
   const users = await fetchUser();
   return (
     <Link
       href={href}
-      className="bg-gradient-to-l from-black to-[#3B3B3B] flex mb-5 gap-10 text-white object-contain relative p-16 w-full rounded-lg"
+      className={`${
+        data.image
+          ? "flex mb-5 gap-6 text-white object-contain relative p-10 w-full rounded-lg overflow-hidden"
+          : "bg-gradient-to-l  from-black to-[#3B3B3B] flex mb-5 gap-6 text-white object-contain relative p-10 w-full rounded-lg"
+      } `}
     >
-      <Image src={"/Pattern.png"} fill />
+      {data.image ? (
+        <Image fill src={data?.image} className="-z-10" />
+      ) : (
+        <Image src={"/Pattern.png"} fill className="" />
+      )}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="50"
@@ -33,11 +41,20 @@ const Content = async ({ data, href }) => {
         </defs>
       </svg>
       <div className="space-y-[25px]">
-        <h3 className="text-[48px] font-normal   "> {data?.title}</h3>
+        <h3
+          className={`text-[48px] font-normal ${
+            text && "text-[20px] font-normal"
+          }   `}
+        >
+          {" "}
+          {data?.title}
+        </h3>
 
-        <Markdown className="text-[24px] font-normal leading-10">
-          {data?.content}
-        </Markdown>
+        {!text && (
+          <Markdown className="text-[24px] font-normal leading-10">
+            {data?.content}
+          </Markdown>
+        )}
 
         {users.map((user) => {
           // Check if the userId of the data matches the id of the user
@@ -57,7 +74,7 @@ const Content = async ({ data, href }) => {
                     ?
                   </div>
                 )}
-                <p className="text-[18px] font-medium mt-5 ">By {user.name}</p>
+                <p className="text-[18px] font-medium  ">By {user.name}</p>
               </div>
             );
           }

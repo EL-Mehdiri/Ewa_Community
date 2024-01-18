@@ -53,7 +53,7 @@ const DropdownMenu = ({ name, image, email }) => {
               alt="logo"
             />
           ) : (
-            <div className="w-[50px] h-[50px] rounded-full bg-gray-300 grid place-content-center">
+            <div className="w-[136px] h-[136px] rounded-full bg-gray-300 grid place-content-center">
               ?
             </div>
           )}

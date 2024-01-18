@@ -1,10 +1,14 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import { withUt } from "uploadthing/tw";
+
+export default withUt({
+  /** @type {import('tailwindcss').Config} */
+  // Your existing Tailwind config
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     "./node_modules/tw-elements/dist/js/**/*.js",
+    "./src/**/*.{ts,tsx,mdx}"
   ],
   theme: {
     extend: {
@@ -21,4 +25,4 @@ module.exports = {
     require("tw-elements/dist/plugin.cjs")
 
   ],
-}
+});

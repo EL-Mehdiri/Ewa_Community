@@ -83,7 +83,7 @@ const PopupModel = ({ url }) => {
               </button>
             </div>
 
-            <div className="relative p-4">
+            <div className="relative text-black p-4">
               <p>
                 Are you sure you want to delete this Idea? this action cannot be
                 undone.

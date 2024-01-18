@@ -8,14 +8,20 @@ import Banner from "./components/mainPage/Banner";
 import SideBare from "./components/mainPage/SideBare";
 
 const fetchIdeas = cache(() => prisma?.pfeideas?.findMany({
-  take: 2,
+  take: 3,
   orderBy: {
     createdAt: "desc",
   },
 
 }));
 const fetchLink = cache(() => prisma?.sharingLinks?.findMany({
-  take: 2,
+  take: 3,
+  orderBy: {
+    createdAt: "desc",
+  },
+}));
+const fetchNews = cache(() => prisma?.news?.findMany({
+  take: 3,
   orderBy: {
     createdAt: "desc",
   },
@@ -24,6 +30,7 @@ const fetchLink = cache(() => prisma?.sharingLinks?.findMany({
 export default async function Home() {
   const ideas = await fetchIdeas();
   const links = await fetchLink();
+  const news = await fetchNews();
 
 
 
@@ -38,9 +45,13 @@ export default async function Home() {
           {ideas.map((idea) => (
             <Content key={idea.id} data={idea} href={`/PfeIdeas/${idea.id}`} />
           ))}
-          <p> link </p>
+          <h2 className="p-5"> Links </h2>
           {links.map((link) => (
             <Content key={link.id} data={link} href={`/SharingLink/${link.id}`} />
+          ))}
+          <h2 className="p-5"> Links </h2>
+          {news.map((article) => (
+            <Content key={article.id} data={article} href={`/SharingLink/${article.id}`} />
           ))}
         </div>
         <div className="col-span-1">

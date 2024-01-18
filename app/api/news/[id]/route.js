@@ -1,57 +1,41 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from "next/server"
 import { NewsSchema } from "../../validationSchemas";
 import prisma from "@/prisma/client";
-import fs from "fs/promises";
-import { writeFile } from "fs/promises";
-import path from "path";
-import { join } from "path";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../auth/[...nextauth]/authOptions";
+
+
 export async function PATCH(request, { params }) {
-  const formData = await request.formData();
-  const file = formData.get("file");
-  const validation = NewsSchema.safeParse(Object.fromEntries(formData));
-  if (!file) {
-    return NextResponse.json({ success: false });
-  }
-  if (!validation.success) return NextResponse.json(validation.error.format());
+  const session = await getServerSession(authOptions)
+  if (!session) return NextResponse.json({}, { status: 401 })
 
-  const article = await prisma.news.findUnique({ where: { id: params.id } });
-  if (!article)
-    return NextResponse.json(
-      { error: "article does not exist !!! " },
-      { status: 404 }
-    );
-  try {
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-    const path = join("./public", "images", file.name);
-    await writeFile(path, buffer);
-    console.log(`open ${path} to see the uploaded file`);
-    const imageUrl = `/images/${file.name}`;
-    const updateArticle = await prisma.news.update({
-      where: { id: article.id },
-      data: {
-        title: validation.data.title,
-        content: validation.data.content,
-        image: imageUrl,
-      },
-    });
-
-    return NextResponse.json(updateArticle);
-  } catch (error) {
-    console.error("Error saving image data to database:", error);
-    return NextResponse.json({ success: false });
-  }
+  const body = await request.json();
+  const validationSchema = NewsSchema.safeParse(body)
+  if (!validationSchema.success) return NextResponse.json(validationSchema.error.format())
+  // Get the idea to be edited and check it exists
+  const article = await prisma.news.findUnique({ where: { id: params.id } })
+  if (!article) return NextResponse.json({ error: "article is not Exist !!! " }, { status: 404 })
+  const updateArtile = await prisma.news.update({
+    where: { id: article.id },
+    data: {
+      title: body.title,
+      image: body.image,
+      content: body.content
+    }
+  })
+  return NextResponse.json(updateArtile)
 }
 
+
+
 export async function DELETE(request, { params }) {
-  const article = await prisma.news.findUnique({ where: { id: params.id } });
-  if (!article)
-    return NextResponse.json(
-      { error: "article does not Exist !!! " },
-      { status: 404 }
-    );
+  const session = await getServerSession(authOptions)
+  if (!session) return NextResponse.json({}, { status: 401 })
+
+  const article = await prisma.news.findUnique({ where: { id: params.id } })
+  if (!article) return NextResponse.json({ error: "article is not Exist !!! " }, { status: 404 })
   await prisma.news.delete({
     where: { id: article.id },
-  });
-  return NextResponse.json({});
+  })
+  return NextResponse.json({})
 }

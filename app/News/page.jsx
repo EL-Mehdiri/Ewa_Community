@@ -20,6 +20,7 @@ const page = async () => {
               key={article.id}
               data={article}
               href={`/News/${article.id}`}
+              text={"News"}
             />
           ))}
         </div>

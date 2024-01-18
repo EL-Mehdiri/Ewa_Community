@@ -1,4 +1,3 @@
-
 import { z } from "zod";
 
 export const IdeaSchema = z.object({
@@ -17,7 +16,7 @@ export const IdeaSchema = z.object({
             invalid_type_error:
                 "your content must be  made mostly of  alphabetical characters",
         })
-        .min(20, { message: "your title must contain at least 50 characters" }),
+        .min(50, { message: "your title must contain at least 50 characters" }),
 });
 export const NewsSchema = z.object({
     title: z
@@ -28,14 +27,14 @@ export const NewsSchema = z.object({
         })
         .min(8, { message: "your title must contain at least 8 characters" })
         .max(100, { message: "yout title exceded 100 charachters" }),
-    userId: z.string(),
+
     content: z
         .string({
             required_error: " Content is required",
             invalid_type_error:
                 "your content must be  made mostly of  alphabetical characters",
         })
-        .min(50, { message: "your description must contain at least 50 characters" }),
+        .min(50, { message: "your title must contain at least 50 characters" }),
 });
 export const UserSchema = z.object({
     username: z
