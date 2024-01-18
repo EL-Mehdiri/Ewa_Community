@@ -6,6 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { UserSchema } from "@/app/api/validationSchemas";
 import { useForm } from "react-hook-form";
 import ErrorMessage from "@/app/components/ErrorMessage";
+import Link from "next/link";
+import { signIn } from "next-auth/react";
 const RegisterForm = () => {
   const {
     register,
@@ -17,6 +19,13 @@ const RegisterForm = () => {
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const handleGoogleSignIn = async () => {
+    try {
+      await signIn("google");
+    } catch (error) {
+      console.error("Google Sign In failed", error);
+    }
+  };
   const onSubmit = handleSubmit(async (data) => {
     try {
       const response = await axios.post("/api/register", {
@@ -133,6 +142,7 @@ const RegisterForm = () => {
               <button
                 type="button"
                 className="w-80 h-14 px-4 bg-white text-gray-700 border-none rounded-full cursor-pointer flex items-center justify-center hover:bg-blue-600 hover:text-white focus:outline-none"
+                onClick={handleGoogleSignIn}
               >
                 Sign in with Google
               </button>

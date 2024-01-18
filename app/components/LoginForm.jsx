@@ -11,6 +11,13 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const handleGoogleSignIn = async () => {
+    try {
+      await signIn("google");
+    } catch (error) {
+      console.error("Google Sign In failed", error);
+    }
+  };
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -32,6 +39,7 @@ const LoginForm = () => {
       console.error("Login failed", err);
     }
   };
+
   return (
     <div>
       <div
@@ -124,6 +132,15 @@ const LoginForm = () => {
                   Sign up
                 </a>
               </p>
+              <div className="mt-4 flex items-center justify-center">
+                <button
+                  type="button"
+                  className="w-80 h-14 px-4 bg-white text-gray-700 border-none rounded-full cursor-pointer flex items-center justify-center hover:bg-blue-600 hover:text-white focus:outline-none"
+                  onClick={handleGoogleSignIn}
+                >
+                  Sign in with Google
+                </button>
+              </div>
             </form>
           </div>
         </div>

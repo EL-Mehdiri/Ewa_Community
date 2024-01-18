@@ -63,7 +63,7 @@ const DropdownMenu = ({ name, image, email }) => {
         <li>
           <Link
             className="flex gap-5  text-[16.5px]  font-mediumw-full whitespace-nowrap bg-transparent px-24 py-4  text-neutral-700 hover:bg-[#967DFC] hover:text-white active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
-            href="/Settings"
+            href="/Profile"
             data-te-dropdown-item-ref
           >
             <svg
@@ -100,7 +100,7 @@ const DropdownMenu = ({ name, image, email }) => {
                 </clipPath>
               </defs>
             </svg>
-            Settings
+            Profile
           </Link>
         </li>
         <li>
