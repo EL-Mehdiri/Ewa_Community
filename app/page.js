@@ -48,8 +48,8 @@ export default async function Home() {
           ))}
           {links.map((link) => (
             <h2 className="p-5"> Links </h2>,
-            <Content key={link.id} data={link} href={`/SharingLink/${link.id}`} />,
-            ))}
+            <Content key={link.id} data={link} href={`/SharingLink/${link.id}`} />
+          ))}
           {news.map((article) => (
             <h2 className="p-5"> News </h2>,
             <Content key={article.id} data={article} href={`/SharingLink/${article.id}`} />
