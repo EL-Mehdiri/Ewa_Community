@@ -1,5 +1,6 @@
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import Image from "next/image";
 
 const LoadingIdeas = () => {
   const ideas = [1, 2, 3, 4, 5, 6];
@@ -40,7 +41,7 @@ const LoadingIdeas = () => {
     //   </div>
     // </div>
     <div className="grid place-content-center w-full h-screen">
-      <h1>loading....</h1>
+      <Image src="/icon.svg" width={116} height={39} alt="logo" />
     </div>
   );
 };

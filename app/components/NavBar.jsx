@@ -2,6 +2,7 @@
 import React from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import Image from "next/image";
 
 import DropdownMenu from "./DropdownMenu";
 import Skeleton from "react-loading-skeleton";
@@ -14,7 +15,9 @@ const NavBar = () => {
   return (
     <header className=" bg-white p-5 ">
       <div className="container flex   mx-auto justify-between  items-center">
-        <Link href="/">L O G O</Link>
+        <Link href="/">
+          <Image src="/Logo.svg" width={116} height={39} alt="logo" />
+        </Link>
 
         <SearchBare />
         <div className="flex items-center gap-4 ">
