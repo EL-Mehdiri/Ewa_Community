@@ -29,15 +29,13 @@ const LoginForm = () => {
         username,
         redirect: false,
       });
-      router.push("/");
-      router.refresh();
 
       if (error) {
         console.error("Login failed", error.message || error);
       } else {
         console.log("User connected successfully");
-        router.push("/");
-        router.refresh();
+        await router.push("/");
+        await router.refresh();
         // Redirect the user to the appropriate page
       }
     } catch (err) {

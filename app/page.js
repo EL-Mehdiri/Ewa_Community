@@ -32,33 +32,37 @@ export default async function Home() {
   const links = await fetchLink();
   const news = await fetchNews();
 
-
-
   return (
     <PageWrapper>
-      <div className="p-5  grid container mx-auto grid-cols-4 gap-6">
-        <div className='col-span-1 '>
+      <div className="p-5 grid container mx-auto grid-cols-4 gap-6">
+        <div className='col-span-1'>
           <SideBare />
         </div>
-        <div className="col-span-2 ">
+        <div className="col-span-2">
           <Banner href="/PfeIdeas/newIdea" text={"..."} />
-          {ideas.map((idea) => (
-            <h2 className="p-5"> Ideas </h2>,
-            <Content key={idea.id} data={idea} href={`/PfeIdeas/${idea.id}`} />
-          ))}
-          {links.map((link) => (
-            <h2 className="p-5"> Links </h2>,
-            <Content key={link.id} data={link} href={`/SharingLink/${link.id}`} />
-          ))}
-          {news.map((article) => (
-            <h2 className="p-5"> News </h2>,
-            <Content key={article.id} data={article} href={`/News/${article.id}`} />
-          ))}
+          <div>
+            <h2 className="p-5">Ideas</h2>
+            {ideas.map((idea) => (
+              <Content key={idea.id} data={idea} href={`/PfeIdeas/${idea.id}`} />
+            ))}
+          </div>
+          <div>
+            <h2 className="p-5">Links</h2>
+            {links.map((link) => (
+              <Content key={link.id} data={link} href={`/SharingLink/${link.id}`} />
+            ))}
+          </div>
+          <div>
+            <h2 className="p-5">News</h2>
+            {news.map((article) => (
+              <Content key={article.id} data={article} href={`/News/${article.id}`} />
+            ))}
+          </div>
         </div>
         <div className="col-span-1">
           <Latest />
         </div>
-      </div >
+      </div>
     </PageWrapper>
-  )
+  );
 }
