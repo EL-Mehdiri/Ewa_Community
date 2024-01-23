@@ -21,7 +21,7 @@ const Content = async ({ data, href, text }) => {
       ) : (
         <Image src={"/Pattern.png"} fill className="" />
       )}
-      <svg
+      {/* <svg
         xmlns="http://www.w3.org/2000/svg"
         width="50"
         height="50"
@@ -39,7 +39,7 @@ const Content = async ({ data, href, text }) => {
             <rect width="31" height="31" fill="white" />
           </clipPath>
         </defs>
-      </svg>
+      </svg> */}
       <div className="space-y-[25px]">
         <h3
           className={`text-[48px] leading-[44px] font-normal 

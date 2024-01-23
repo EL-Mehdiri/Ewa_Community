@@ -27,6 +27,7 @@ const fetchNews = cache(() => prisma?.news?.findMany({
   },
 }));
 
+
 export default async function Home() {
   const ideas = await fetchIdeas();
   const links = await fetchLink();
